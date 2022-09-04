@@ -6,25 +6,22 @@
 //
 
 import Cocoa
+import InputMethodKit
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    @IBOutlet var window: NSWindow!
+    var server = IMKServer()
 
-
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
+    func applicationDidFinishLaunching(_ notification: Notification) {
         // Insert code here to initialize your application
+        server = IMKServer(name: Bundle.main.infoDictionary?["InputMethodConnectionName"] as? String, bundleIdentifier: Bundle.main.bundleIdentifier)
+        NSLog("tried connection")
     }
 
-    func applicationWillTerminate(_ aNotification: Notification) {
+    func applicationWillTerminate(_ notification: Notification) {
         // Insert code here to tear down your application
     }
-
-    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
-        return true
-    }
-
 
 }
 

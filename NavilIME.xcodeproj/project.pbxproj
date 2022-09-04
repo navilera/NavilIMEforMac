@@ -10,6 +10,8 @@
 		CF39BCA228C42D7200CB35AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF39BCA128C42D7200CB35AE /* AppDelegate.swift */; };
 		CF39BCA428C42D7300CB35AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF39BCA328C42D7300CB35AE /* Assets.xcassets */; };
 		CF39BCA728C42D7300CB35AE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF39BCA528C42D7300CB35AE /* MainMenu.xib */; };
+		CF39BCAF28C49BDA00CB35AE /* NavilIMEInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF39BCAE28C49BDA00CB35AE /* NavilIMEInputController.swift */; };
+		CF39BCB228C4A47200CB35AE /* navilime.tiff in Resources */ = {isa = PBXBuildFile; fileRef = CF39BCB128C4A47200CB35AE /* navilime.tiff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +20,9 @@
 		CF39BCA328C42D7300CB35AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF39BCA628C42D7300CB35AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		CF39BCA828C42D7300CB35AE /* NavilIME.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NavilIME.entitlements; sourceTree = "<group>"; };
+		CF39BCAE28C49BDA00CB35AE /* NavilIMEInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavilIMEInputController.swift; sourceTree = "<group>"; };
+		CF39BCB028C49D3800CB35AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CF39BCB128C4A47200CB35AE /* navilime.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = navilime.tiff; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,10 +55,13 @@
 		CF39BCA028C42D7200CB35AE /* NavilIME */ = {
 			isa = PBXGroup;
 			children = (
+				CF39BCB028C49D3800CB35AE /* Info.plist */,
 				CF39BCA128C42D7200CB35AE /* AppDelegate.swift */,
+				CF39BCAE28C49BDA00CB35AE /* NavilIMEInputController.swift */,
 				CF39BCA328C42D7300CB35AE /* Assets.xcassets */,
 				CF39BCA528C42D7300CB35AE /* MainMenu.xib */,
 				CF39BCA828C42D7300CB35AE /* NavilIME.entitlements */,
+				CF39BCB128C4A47200CB35AE /* navilime.tiff */,
 			);
 			path = NavilIME;
 			sourceTree = "<group>";
@@ -116,6 +124,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF39BCB228C4A47200CB35AE /* navilime.tiff in Resources */,
 				CF39BCA428C42D7300CB35AE /* Assets.xcassets in Resources */,
 				CF39BCA728C42D7300CB35AE /* MainMenu.xib in Resources */,
 			);
@@ -129,6 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF39BCA228C42D7200CB35AE /* AppDelegate.swift in Sources */,
+				CF39BCAF28C49BDA00CB35AE /* NavilIMEInputController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +281,7 @@
 				DEVELOPMENT_TEAM = 232X8633XC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NavilIME/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -298,6 +309,7 @@
 				DEVELOPMENT_TEAM = 232X8633XC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NavilIME/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
