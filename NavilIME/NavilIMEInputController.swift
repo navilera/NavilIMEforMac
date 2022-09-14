@@ -65,15 +65,6 @@ open class NavilIMEInputController: IMKInputController {
             return false
         }
         
-        if keycode >= self.key_code.count {
-            PrintLog.shared.Log(log: "Bypassd keycode: \(keycode) >= \(self.key_code.count)")
-            
-            self.hangul.Flush()
-            self.update_display(client: client)
-            
-            return false
-        }
-        
         let backspace = 0x33    // MacOS defined
         if keycode == backspace {
             PrintLog.shared.Log(log: "Backspace")
@@ -85,6 +76,14 @@ open class NavilIMEInputController: IMKInputController {
             return remain
         }
         
+        if keycode >= self.key_code.count {
+            PrintLog.shared.Log(log: "Bypassd keycode: \(keycode) >= \(self.key_code.count)")
+            
+            self.hangul.Flush()
+            self.update_display(client: client)
+            
+            return false
+        }
         
         let ascii_idx = self.key_code.index(self.key_code.startIndex, offsetBy: Int(keycode))
         var ascii = self.key_code[ascii_idx]
@@ -93,7 +92,7 @@ open class NavilIMEInputController: IMKInputController {
             ascii = self.shift_key_code[ascii_idx]
         }
         
-        var eaten:Bool = self.hangul.Process(ascii: String(ascii))
+        let eaten:Bool = self.hangul.Process(ascii: String(ascii))
         if eaten == false {
             PrintLog.shared.Log(log: "Not Hangul: \(ascii)")
             
@@ -111,7 +110,7 @@ open class NavilIMEInputController: IMKInputController {
     func update_display(client:Any!) {
         let commit_unicode:[unichar] = hangul.GetCommit()
         let preedit_unicode:[unichar] = hangul.GetPreedit()
-        var commited:String = String(utf16CodeUnits:commit_unicode , count: commit_unicode.count)
+        let commited:String = String(utf16CodeUnits:commit_unicode , count: commit_unicode.count)
         let preediting:String = String(utf16CodeUnits: preedit_unicode, count: preedit_unicode.count)
         
         guard let disp = client as? IMKTextInput else {
