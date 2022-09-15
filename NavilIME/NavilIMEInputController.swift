@@ -108,8 +108,8 @@ open class NavilIMEInputController: IMKInputController {
     }
     
     func update_display(client:Any!) {
-        let commit_unicode:[unichar] = hangul.GetCommit()
-        let preedit_unicode:[unichar] = hangul.GetPreedit()
+        let commit_unicode:[unichar] = self.hangul.GetCommit()
+        let preedit_unicode:[unichar] = self.hangul.GetPreedit()
         let commited:String = String(utf16CodeUnits:commit_unicode , count: commit_unicode.count)
         let preediting:String = String(utf16CodeUnits: preedit_unicode, count: preedit_unicode.count)
         
@@ -127,5 +127,11 @@ open class NavilIMEInputController: IMKInputController {
             let markedRange = disp.markedRange()
             disp.setMarkedText(preediting, selectionRange: NSRange(location: 0, length: preediting.count), replacementRange: markedRange)
         }
+    }
+    
+    override open func commitComposition(_ sender: Any!) {
+        PrintLog.shared.Log(log: "Commit Composition?")
+        self.hangul.Flush()
+        self.update_display(client: sender)
     }
 }
