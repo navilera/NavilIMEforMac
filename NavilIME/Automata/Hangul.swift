@@ -23,13 +23,10 @@ struct Automata {
     var current:[String]
     // 키보드
     var keyboard:Keyboard
-    // 한글인가?
-    var is_hangul:Bool
     
     init(kbd:Keyboard) {
         self.current = []
         self.keyboard = kbd
-        self.is_hangul = false
     }
     
     func chosung(comp: inout Composition, ch:String) {
