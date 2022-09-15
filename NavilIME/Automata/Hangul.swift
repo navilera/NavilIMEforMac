@@ -214,9 +214,15 @@ class Hangul {
     }
     
     func Backspace() -> Bool {
-        self.automata!.current.removeLast();
         if self.automata!.current.count > 0 {
-            return true
+            self.automata!.current.removeLast();
+            if self.automata!.current.count > 0 {
+                // 오토마타 돌린다.
+                let comp:Composition = self.automata!.run()
+                // 조합 완료 안된 낱자는 preediting에 넣는다.
+                self.set_preedit(comp: comp)
+                return true
+            }
         }
         return false
     }
