@@ -288,7 +288,7 @@ class Keyboard {
     var jungsung_layout:[String:Jungsung]
     var jongsung_layout:[String:Jongsung]
     
-    var normalization_type:NormType = NormType.NFC
+    var normalization_type:NormType = NormType.NFD
     
     init() {
         self.chosung_layout = [:]
