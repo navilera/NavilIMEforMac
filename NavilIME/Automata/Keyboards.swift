@@ -278,10 +278,17 @@ enum Jongsung:unichar {
     case YetSsangnieun        = 0x11ff // ᇿ
 }
 
+enum NormType {
+    case NFC
+    case NFD
+}
+
 class Keyboard {
     var chosung_layout:[String:Chosung]
     var jungsung_layout:[String:Jungsung]
     var jongsung_layout:[String:Jongsung]
+    
+    var normalization_type:NormType = NormType.NFC
     
     init() {
         self.chosung_layout = [:]
@@ -318,7 +325,7 @@ class Keyboard {
         return ""
     }
     
-    func normalization(comp:Composition) -> [unichar] {
+    func norm_nfd(comp:Composition) -> [unichar] {
         var mac_nfd:[unichar] = []
         
         if let chosung_unicode = self.chosung_layout[comp.chosung] {
@@ -332,6 +339,52 @@ class Keyboard {
         }
         
         return mac_nfd
+    }
+    
+    func norm_nfc(comp:Composition) -> [unichar] {
+        var nfc:[unichar] = []
+        
+        let cho_base = Chosung.Giyuk.rawValue
+        let jung_base = Jungsung.A.rawValue
+        let jong_base = Jongsung.Kiyeok.rawValue - 1
+        let unicode_hangul_base:unichar = 0xac00
+        
+        // ((초성인덱스 * 588) + (중성인덱스 * 28) + 종성인덱스) + 0xAC00
+        var cho_idx:unichar = 0
+        var jung_idx:unichar = 0
+        var jong_idx:unichar = 0
+        
+        if let chosung_unicode = self.chosung_layout[comp.chosung] {
+            cho_idx = chosung_unicode.rawValue - cho_base
+        }
+        if let jungsung_unicode = self.jungsung_layout[comp.jungsung]{
+            jung_idx = jungsung_unicode.rawValue - jung_base
+        }
+        if let jongsung_unicode = self.jongsung_layout[comp.jongsung] {
+            jong_idx = jongsung_unicode.rawValue - jong_base
+        }
+        
+        if (cho_idx != 0) && (jung_idx != 0) {
+            let uni_han:unichar = (cho_idx * 588) + (jung_idx * 28) + jong_idx + unicode_hangul_base
+            nfc = [uni_han]
+        } else {
+            // No Jungsung can't generate NFC value
+            nfc = self.norm_nfd(comp: comp)
+        }
+        
+        return nfc
+    }
+    
+    func normalization(comp:Composition) -> [unichar] {
+        var norm:[unichar] = []
+        
+        if self.normalization_type == NormType.NFC {
+            norm = self.norm_nfc(comp: comp)
+        } else if self.normalization_type == NormType.NFD {
+            norm = self.norm_nfd(comp: comp)
+        }
+        
+        return norm
     }
 }
 
