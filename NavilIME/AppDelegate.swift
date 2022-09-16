@@ -20,16 +20,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         server = IMKServer(name: Bundle.main.infoDictionary?["InputMethodConnectionName"] as? String, bundleIdentifier: Bundle.main.bundleIdentifier)
         NSLog("tried connection")
         
-        PrintLog.shared.scrollView = self.scrollView
+        // 디버깅 할 때는 로그를 봐야 하므로 아래 주석을 순서대로 사용한다.
+        //PrintLog.shared.scrollView = self.scrollView      // Debuging mode ON
+        PrintLog.shared.scrollView = nil                    // Debuging mode OFF
     }
 
     func applicationWillTerminate(_ notification: Notification) {
         // Insert code here to tear down your application
     }
-    
-    func debugOutLog(log:String) {
-        self.scrollView.documentView?.insertText(log+"\n")
-    }
-
 }
 
