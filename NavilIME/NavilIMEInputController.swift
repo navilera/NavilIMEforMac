@@ -74,8 +74,9 @@ open class NavilIMEInputController: IMKInputController {
             let remain = self.hangul.Backspace()
             if remain == true {
                 self.update_display(client: client)
+            } else {
+                self.commitComposition(client)
             }
-            self.commitComposition(client)
             return remain
         }
         
