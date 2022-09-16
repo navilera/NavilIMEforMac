@@ -75,6 +75,7 @@ open class NavilIMEInputController: IMKInputController {
             if remain == true {
                 self.update_display(client: client)
             }
+            self.commitComposition(client)
             return remain
         }
         
@@ -120,14 +121,20 @@ open class NavilIMEInputController: IMKInputController {
         }
         
         if commited.count != 0 {
-            PrintLog.shared.Log(log: "Commit: \(commited)")
+            let markedRange_disp = disp.markedRange()
+            let selectedRange_disp = disp.selectedRange()
             disp.insertText(commited, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
+            
+            PrintLog.shared.Log(log: "Commit: \(commited) mloc:\(markedRange_disp.location) sloc:\(selectedRange_disp.location)")
         }
         
         if preediting.count != 0 {
-            PrintLog.shared.Log(log: "Predit: \(preediting)")
-            let markedRange = disp.markedRange()
+            let markedRange_disp = disp.markedRange()
+            let selectedRange_disp = disp.selectedRange()
+            let markedRange = NSRange(location: markedRange_disp.location, length: preediting.count)
             disp.setMarkedText(preediting, selectionRange: NSRange(location: 0, length: preediting.count), replacementRange: markedRange)
+            
+            PrintLog.shared.Log(log: "Predit: \(preediting) mloc:\(markedRange_disp.location) sloc:\(selectedRange_disp.location)")
         }
     }
     

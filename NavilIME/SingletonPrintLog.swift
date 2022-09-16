@@ -11,11 +11,13 @@ import Cocoa
 class PrintLog {
     static let shared = PrintLog()
 
-    var scrollView: NSScrollView!
+    var scrollView: NSScrollView?
     
     private init() { }
     
     func Log(log:String) {
-        self.scrollView.documentView?.insertText(log + "\n")
+        if let scv = self.scrollView {
+            scv.documentView?.insertText(log + "\n")
+        }
     }
 }
