@@ -47,7 +47,11 @@ open class NavilIMEInputController: IMKInputController {
     override open func handle(_ event: NSEvent!, client sender: Any!) -> Bool {
         switch event.type {
         case .keyDown:
-            return self.keydown_event_handler(event: event, client: sender)
+            let eaten = self.keydown_event_handler(event: event, client: sender)
+            if eaten == false {
+                self.commitComposition(sender)
+            }
+            return eaten
         case .leftMouseDown, .leftMouseUp, .leftMouseDragged, .rightMouseDown, .rightMouseUp, .rightMouseDragged:
             self.commitComposition(sender)
         default:
@@ -72,12 +76,11 @@ open class NavilIMEInputController: IMKInputController {
             PrintLog.shared.Log(log: "Backspace")
             
             let remain = self.hangul.Backspace()
-            if remain == true {
+            if remain >= 0 {
                 self.update_display(client: client)
-            } else {
-                self.commitComposition(client)
+                return (remain > 0 ? true : false)
             }
-            return remain
+            return false
         }
         
         if keycode >= self.key_code.count {
@@ -122,20 +125,18 @@ open class NavilIMEInputController: IMKInputController {
         }
         
         if commited.count != 0 {
-            let markedRange_disp = disp.markedRange()
-            let selectedRange_disp = disp.selectedRange()
             disp.insertText(commited, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
             
-            PrintLog.shared.Log(log: "Commit: \(commited) mloc:\(markedRange_disp.location) sloc:\(selectedRange_disp.location)")
+            PrintLog.shared.Log(log: "57 Commit: \(commited)")
         }
         
+        // replacementRange 가 아래 코드와 같아야만 잘 동작한다.
         if preediting.count != 0 {
-            let markedRange_disp = disp.markedRange()
-            let selectedRange_disp = disp.selectedRange()
-            let markedRange = NSRange(location: markedRange_disp.location, length: preediting.count)
-            disp.setMarkedText(preediting, selectionRange: NSRange(location: 0, length: preediting.count), replacementRange: markedRange)
+            let sr = NSRange(location: 0, length: preediting.count)
+            let rr = NSRange(location: NSNotFound, length: NSNotFound)
+            disp.setMarkedText(preediting, selectionRange: sr, replacementRange: rr)
             
-            PrintLog.shared.Log(log: "Predit: \(preediting) mloc:\(markedRange_disp.location) sloc:\(selectedRange_disp.location)")
+            PrintLog.shared.Log(log: "57 Predit: \(preediting)")
         }
     }
     
@@ -145,7 +146,7 @@ open class NavilIMEInputController: IMKInputController {
      이 메시지를 받은 후 입력 방법은 주어진 컴포지션 세션이 완료된 것을 고려해야 합니다.
      */
     override open func commitComposition(_ sender: Any!) {
-        PrintLog.shared.Log(log: "Commit Composition?")
+        PrintLog.shared.Log(log: "Commit Composition")
         self.hangul.Flush()
         self.update_display(client: sender)
     }

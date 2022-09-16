@@ -297,21 +297,24 @@ class Keyboard {
     }
     
     func chosung_proc(comp:Composition, ch:String) -> Bool {
-        self.chosung_layout.contains(where: {(key, value) -> Bool in return key == ch})
+        self.chosung_layout[ch] != nil ? true : false
     }
     
     func jungsung_proc(comp:Composition, ch:String) -> Bool {
-        self.jungsung_layout.contains(where: {(key, value) -> Bool in return key == ch})
+        self.jungsung_layout[ch] != nil ? true : false
     }
     
     func jongsung_proc(comp:Composition, ch:String) -> Bool {
-        self.jongsung_layout.contains(where: {(key, value) -> Bool in return key == ch})
+        self.jongsung_layout[ch] != nil ? true : false
     }
     
     func is_hangul(ch:String) -> Bool {
-        return (self.chosung_layout.contains(where: {(key, value) -> Bool in return key == ch})
-                || self.jungsung_layout.contains(where: {(key, value) -> Bool in return key == ch})
-                || self.jongsung_layout.contains(where: {(key, value) -> Bool in return key == ch}))
+        // chosung_proc(),jungsung_proc(), jongsung_proc()은 override 가능하기 때문에
+        // 초중종성 키매핑 레이아웃에서 직접 검색한다.
+        let is_cho = self.chosung_layout[ch] != nil ? true : false
+        let is_jung = self.jungsung_layout[ch] != nil ? true : false
+        let is_jong = self.jongsung_layout[ch] != nil ? true : false
+        return (is_cho || is_jung || is_jong)
     }
     
     func debugout(comp:Composition) -> String {
