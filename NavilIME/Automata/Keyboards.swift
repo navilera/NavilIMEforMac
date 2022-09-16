@@ -328,12 +328,26 @@ class Keyboard {
     func norm_nfd(comp:Composition) -> [unichar] {
         var mac_nfd:[unichar] = []
         
+        if comp.Size == 0 {
+            return mac_nfd
+        }
+        
+        // 맥 기본앱인 메모(Memo) 앱은 중성이 혼자 있고 조합 중인 상황에서 무조건 앞에 한글자를 잡아서 초성으로 간주한다.
+        // 그래서 초성만 filler를 넣어준다. 다른 앱에서도 적당히 괜찮게 동작한다.
+        
+        // 초성
         if let chosung_unicode = self.chosung_layout[comp.chosung] {
             mac_nfd.append(chosung_unicode.rawValue)
+        } else {
+            mac_nfd.append(Chosung.Filler.rawValue)
         }
+        
+        // 중성
         if let jungsung_unicode = self.jungsung_layout[comp.jungsung]{
             mac_nfd.append(jungsung_unicode.rawValue)
         }
+        
+        // 종성
         if let jongsung_unicode = self.jongsung_layout[comp.jongsung] {
             mac_nfd.append(jongsung_unicode.rawValue)
         }
