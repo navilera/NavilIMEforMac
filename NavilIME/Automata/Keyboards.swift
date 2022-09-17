@@ -288,8 +288,6 @@ class Keyboard {
     var jungsung_layout:[String:Jungsung]
     var jongsung_layout:[String:Jongsung]
     
-    var normalization_type:NormType = NormType.NFD
-    
     init() {
         self.chosung_layout = [:]
         self.jungsung_layout = [:]
@@ -385,19 +383,19 @@ class Keyboard {
             let uni_han:unichar = (cho_idx * 588) + (jung_idx * 28) + jong_idx + unicode_hangul_base
             nfc = [uni_han]
         } else {
-            // No Jungsung can't generate NFC value
+            // 초성과 중성이 없으면 완성된 글자가 아니므로 NFD로 정규화
             nfc = self.norm_nfd(comp: comp)
         }
         
         return nfc
     }
     
-    func normalization(comp:Composition) -> [unichar] {
+    func normalization(comp:Composition, norm_type:NormType) -> [unichar] {
         var norm:[unichar] = []
         
-        if self.normalization_type == NormType.NFC {
+        if norm_type == NormType.NFC {
             norm = self.norm_nfc(comp: comp)
-        } else if self.normalization_type == NormType.NFD {
+        } else if norm_type == NormType.NFD {
             norm = self.norm_nfd(comp: comp)
         }
         

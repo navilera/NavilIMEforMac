@@ -76,11 +76,10 @@ open class NavilIMEInputController: IMKInputController {
             PrintLog.shared.Log(log: "Backspace")
             
             let remain = self.hangul.Backspace()
-            if remain >= 0 {
-                self.update_display(client: client)
-                return (remain > 0 ? true : false)
+            if remain == true {
+                self.update_display(client: client, backspace: true)
             }
-            return false
+            return remain
         }
         
         if keycode >= self.key_code.count {
@@ -114,11 +113,13 @@ open class NavilIMEInputController: IMKInputController {
         return true
     }
     
-    func update_display(client:Any!) {
+    func update_display(client:Any!, backspace:Bool = false) {
         let commit_unicode:[unichar] = self.hangul.GetCommit()
         let preedit_unicode:[unichar] = self.hangul.GetPreedit()
         let commited:String = String(utf16CodeUnits:commit_unicode , count: commit_unicode.count)
         let preediting:String = String(utf16CodeUnits: preedit_unicode, count: preedit_unicode.count)
+        
+        PrintLog.shared.Log(log: "C:'\(commited)' - \(commited.count) P:'\(preediting)' - \(preediting.count)")
         
         guard let disp = client as? IMKTextInput else {
             return
@@ -127,16 +128,18 @@ open class NavilIMEInputController: IMKInputController {
         if commited.count != 0 {
             disp.insertText(commited, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
             
-            PrintLog.shared.Log(log: "57 Commit: \(commited)")
+            PrintLog.shared.Log(log: "61 Commit: \(commited)")
         }
         
         // replacementRange 가 아래 코드와 같아야만 잘 동작한다.
-        if preediting.count != 0 {
+        if (preediting.count != 0) || (backspace == true) {
+            // 백스페이스로 글자를 지울 때, preddition.count == 0 인 상태가 되는데
+            // 이 때 명시적으로 length = 0 인 NSRange를 setMarkedText()에 주어야만 자연스럽게 처리된다.
             let sr = NSRange(location: 0, length: preediting.count)
             let rr = NSRange(location: NSNotFound, length: NSNotFound)
             disp.setMarkedText(preediting, selectionRange: sr, replacementRange: rr)
             
-            PrintLog.shared.Log(log: "57 Predit: \(preediting)")
+            PrintLog.shared.Log(log: "61 Predit: \(preediting)")
         }
     }
     

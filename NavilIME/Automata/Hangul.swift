@@ -156,7 +156,7 @@ class Hangul {
 
     func set_commit(comp:Composition) {
         if let kbd = self.keyboard {
-            self.committed += kbd.normalization(comp: comp)
+            self.committed += kbd.normalization(comp: comp, norm_type: NormType.NFD)
             let dbg = kbd.debugout(comp: comp)
             if dbg != "" {
                 self.debug_commit.append(dbg)
@@ -166,7 +166,7 @@ class Hangul {
 
     func set_preedit(comp:Composition){
         if let kbd = self.keyboard {
-            self.preediting += kbd.normalization(comp: comp)
+            self.preediting += kbd.normalization(comp: comp, norm_type: NormType.NFD)
             let dbg = kbd.debugout(comp: comp)
             if dbg != "" {
                 self.debug_preedit.append(dbg)
@@ -210,16 +210,16 @@ class Hangul {
         return true
     }
     
-    func Backspace() -> Int {
+    func Backspace() -> Bool {
         if self.automata!.current.count > 0 {
             self.automata!.current.removeLast();
             // 오토마타 돌린다.
             let comp:Composition = self.automata!.run()
             // 조합 완료 안된 낱자는 preediting에 넣는다.
             self.set_preedit(comp: comp)
-            return self.automata!.current.count
+            return true
         }
-        return -1
+        return false
     }
 
     func Flush() {
