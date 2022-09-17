@@ -362,26 +362,26 @@ class Keyboard {
         let cho_base = Chosung.Giyuk.rawValue
         let jung_base = Jungsung.A.rawValue
         let jong_base = Jongsung.Kiyeok.rawValue - 1
-        let unicode_hangul_base:unichar = 0xac00
         
         // ((초성인덱스 * 588) + (중성인덱스 * 28) + 종성인덱스) + 0xAC00
-        var cho_idx:unichar = 0
-        var jung_idx:unichar = 0
-        var jong_idx:unichar = 0
+        var cho_idx:Int = -1
+        var jung_idx:Int = -1
+        var jong_idx:Int = 0
         
         if let chosung_unicode = self.chosung_layout[comp.chosung] {
-            cho_idx = chosung_unicode.rawValue - cho_base
+            cho_idx = Int(chosung_unicode.rawValue - cho_base)
         }
         if let jungsung_unicode = self.jungsung_layout[comp.jungsung]{
-            jung_idx = jungsung_unicode.rawValue - jung_base
+            jung_idx = Int(jungsung_unicode.rawValue - jung_base)
         }
         if let jongsung_unicode = self.jongsung_layout[comp.jongsung] {
-            jong_idx = jongsung_unicode.rawValue - jong_base
+            jong_idx = Int(jongsung_unicode.rawValue - jong_base)
         }
         
-        if (cho_idx != 0) && (jung_idx != 0) {
-            let uni_han:unichar = (cho_idx * 588) + (jung_idx * 28) + jong_idx + unicode_hangul_base
-            nfc = [uni_han]
+        if (cho_idx != -1) && (jung_idx != -1) {
+            let uni_han = (cho_idx * 588) + (jung_idx * 28) + jong_idx + 0xac00
+            let uch:unichar = unichar(uni_han)
+            nfc = [uch]
         } else {
             // 초성과 중성이 없으면 완성된 글자가 아니므로 NFD로 정규화
             nfc = self.norm_nfd(comp: comp)

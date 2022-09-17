@@ -14,17 +14,6 @@ open class NavilIMEInputController: IMKInputController {
     
     var hangul:Hangul!
     
-    open override func inputText(_ string: String!, client sender: Any!) -> Bool {
-        guard let client = sender as? IMKTextInput else {
-            return false
-        }
-        client.insertText(string+"1", replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
-        
-        PrintLog.shared.Log(log: string)
-        
-        return true
-    }
-    
     override open func activateServer(_ sender: Any!) {
         super.activateServer(sender)
         
