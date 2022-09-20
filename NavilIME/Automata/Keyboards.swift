@@ -353,6 +353,8 @@ class Keyboard {
             mac_nfd.append(jongsung_unicode.rawValue)
         }
         
+        PrintLog.shared.Log(log: "NFD: \(mac_nfd)")
+        
         return mac_nfd
     }
     
@@ -382,6 +384,8 @@ class Keyboard {
             let uni_han = (cho_idx * 588) + (jung_idx * 28) + jong_idx + 0xac00
             let uch:unichar = unichar(uni_han)
             nfc = [uch]
+            
+            PrintLog.shared.Log(log: "NFC: \(nfc)")
         } else {
             // 초성과 중성이 없으면 완성된 글자가 아니므로 NFD로 정규화
             nfc = self.norm_nfd(comp: comp)

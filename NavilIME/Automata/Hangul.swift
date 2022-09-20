@@ -156,7 +156,7 @@ class Hangul {
 
     func set_commit(comp:Composition) {
         if let kbd = self.keyboard {
-            self.committed += kbd.normalization(comp: comp, norm_type: NormType.NFD)
+            self.committed += kbd.normalization(comp: comp, norm_type: NormType.NFC)
             let dbg = kbd.debugout(comp: comp)
             if dbg != "" {
                 self.debug_commit.append(dbg)
