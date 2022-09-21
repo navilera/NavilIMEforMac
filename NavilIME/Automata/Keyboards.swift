@@ -278,11 +278,6 @@ enum Jongsung:unichar {
     case YetSsangnieun        = 0x11ff // ᇿ
 }
 
-enum NormType {
-    case NFC
-    case NFD
-}
-
 class Keyboard {
     var chosung_layout:[String:Chosung]
     var jungsung_layout:[String:Jungsung]
@@ -394,14 +389,12 @@ class Keyboard {
         return nfc
     }
     
-    func normalization(comp:Composition, norm_type:NormType) -> [unichar] {
+    func normalization(comp:Composition) -> [unichar] {
         var norm:[unichar] = []
         
-        if norm_type == NormType.NFC {
-            norm = self.norm_nfc(comp: comp)
-        } else if norm_type == NormType.NFD {
-            norm = self.norm_nfd(comp: comp)
-        }
+        // 최소한 초성, 중성이 둘 다 있어야 NFC로 정규화하고
+        // 아닐 때는 알아서 NFD로 리턴하므로 norm_nfc 함수를 바로 호출함
+        norm = self.norm_nfc(comp: comp)
         
         return norm
     }
