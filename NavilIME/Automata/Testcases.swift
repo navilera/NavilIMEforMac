@@ -16,9 +16,14 @@ class TestCase {
         var eaten:Bool = true
         
         if t == "input" {
-            eaten = hangul.Process(ascii: ch)
-            if eaten == false {
-                hangul.Flush()
+            // 백스페이스
+            if ch == "//b" {
+                let _ = hangul.Backspace()
+            } else {
+                eaten = hangul.Process(ascii: ch)
+                if eaten == false {
+                    hangul.Flush()
+                }
             }
         } else if t == "flush" {
             hangul.Flush()
@@ -214,8 +219,9 @@ class Test318 : TestCase {
         self.test_debug(hangul: hangul, t: "input", ch: "s", expect_commit: ["dkh"], expect_preedit: ["sXX"])
         self.test_debug(hangul: hangul, t: "input", ch: "u", expect_commit: [], expect_preedit: ["suX"])
         self.test_debug(hangul: hangul, t: "input", ch: "i", expect_commit: [], expect_preedit: ["sui"])
-        let _ = hangul.Backspace()
-        let _ = hangul.Backspace()
+        // 스위프트는 문자열에서 백스페이스 이스케입이 없다? \b 가 안되네.. 그래서 //b로 대충 대체함
+        self.test_debug(hangul: hangul, t: "input", ch: "//b", expect_commit: [], expect_preedit: ["suX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "//b", expect_commit: [], expect_preedit: ["sXX"])
         self.test_debug(hangul: hangul, t: "input", ch: "i", expect_commit: [], expect_preedit: ["siX"])
         self.test_debug(hangul: hangul, t: "input", ch: "i", expect_commit: [], expect_preedit: ["sii"])
     }
