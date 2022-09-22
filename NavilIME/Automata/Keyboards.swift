@@ -321,7 +321,7 @@ class Keyboard {
         return ""
     }
     
-    func norm_nfd(comp:Composition) -> [unichar] {
+    func norm_nfd(comp:Composition, is_commit:Bool) -> [unichar] {
         var mac_nfd:[unichar] = []
         
         if comp.Size == 0 {
@@ -335,7 +335,9 @@ class Keyboard {
         if let chosung_unicode = self.chosung_layout[comp.chosung] {
             mac_nfd.append(chosung_unicode.rawValue)
         } else {
-            mac_nfd.append(Chosung.Filler.rawValue)
+            if is_commit == false {
+                mac_nfd.append(Chosung.Filler.rawValue)
+            }
         }
         
         // 중성
@@ -353,7 +355,7 @@ class Keyboard {
         return mac_nfd
     }
     
-    func norm_nfc(comp:Composition) -> [unichar] {
+    func norm_nfc(comp:Composition, is_commit:Bool) -> [unichar] {
         var nfc:[unichar] = []
         
         let cho_base = Chosung.Giyuk.rawValue
@@ -383,18 +385,18 @@ class Keyboard {
             PrintLog.shared.Log(log: "NFC: \(nfc)")
         } else {
             // 초성과 중성이 없으면 완성된 글자가 아니므로 NFD로 정규화
-            nfc = self.norm_nfd(comp: comp)
+            nfc = self.norm_nfd(comp: comp, is_commit: is_commit)
         }
         
         return nfc
     }
     
-    func normalization(comp:Composition) -> [unichar] {
+    func normalization(comp:Composition, is_commit:Bool) -> [unichar] {
         var norm:[unichar] = []
         
         // 최소한 초성, 중성이 둘 다 있어야 NFC로 정규화하고
         // 아닐 때는 알아서 NFD로 리턴하므로 norm_nfc 함수를 바로 호출함
-        norm = self.norm_nfc(comp: comp)
+        norm = self.norm_nfc(comp: comp, is_commit: is_commit)
         
         return norm
     }
