@@ -11,9 +11,10 @@ import Cocoa
 class HangulMenu {
     static let shared = HangulMenu()
 
-    var menu: NSMenu?
+    let menu: NSMenu = NSMenu()
     
     private init() {
+        
         
     }
 }

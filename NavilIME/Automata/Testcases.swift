@@ -14,6 +14,7 @@ class TestCase {
     
     func test_debug(hangul:Hangul, t:String, ch:String, expect_commit:[String], expect_preedit: [String]) {
         var eaten:Bool = true
+        var extra:String?
         
         if t == "input" {
             // 백스페이스
@@ -23,6 +24,10 @@ class TestCase {
                 eaten = hangul.Process(ascii: ch)
                 if eaten == false {
                     hangul.Flush()
+                    if let etc = hangul.Additional(ascii: ch) {
+                        extra = etc
+                        eaten = true
+                    }
                 }
             }
         } else if t == "flush" {
@@ -37,6 +42,9 @@ class TestCase {
         if eaten == false {
             actual_commit.append(ch)
         }
+        if let etc = extra {
+            actual_commit.append(etc)
+        }
         
         let commit_unicode:[unichar] = hangul.GetCommit()
         let preedit_unicode:[unichar] = hangul.GetPreedit()
@@ -45,6 +53,9 @@ class TestCase {
         
         if eaten == false {
             commited += ch
+        }
+        if let etc = extra {
+            commited += etc
         }
         
         let result_str = "\(t) \(ch) commited \(expect_commit) = \(actual_commit) (\(commited)) preedited \(expect_preedit) = \(actual_preedit) (\(preediting))"
@@ -224,5 +235,157 @@ class Test318 : TestCase {
         self.test_debug(hangul: hangul, t: "input", ch: "//b", expect_commit: [], expect_preedit: ["sXX"])
         self.test_debug(hangul: hangul, t: "input", ch: "i", expect_commit: [], expect_preedit: ["siX"])
         self.test_debug(hangul: hangul, t: "input", ch: "i", expect_commit: [], expect_preedit: ["sii"])
+    }
+}
+
+class Test390 : TestCase {
+    func run() {
+        let hangul = Hangul()
+        hangul.Start(type: "390")
+        
+         // 얇은 사 하이얀 고깔은
+        // j 6 w3
+        self.test_debug(hangul: hangul, t: "input", ch: "j", expect_commit: [], expect_preedit: ["jXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "6", expect_commit: [], expect_preedit: ["j6X"])
+        self.test_debug(hangul: hangul, t: "input", ch: "w", expect_commit: [], expect_preedit: ["j6w"])
+        self.test_debug(hangul: hangul, t: "input", ch: "3", expect_commit: [], expect_preedit: ["j6w3"])
+        // j g s
+        self.test_debug(hangul: hangul, t: "input", ch: "j", expect_commit: ["j6w3"], expect_preedit: ["jXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "g", expect_commit: [], expect_preedit: ["jgX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "s", expect_commit: [], expect_preedit: ["jgs"])
+        // ' '
+        self.test_debug(hangul: hangul, t: "input", ch: " ", expect_commit: ["jgs", " "], expect_preedit: [])
+        // n f X
+        self.test_debug(hangul: hangul, t: "input", ch: "n", expect_commit: [], expect_preedit: ["nXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "f", expect_commit: [], expect_preedit: ["nfX"])
+        // ' '
+        self.test_debug(hangul: hangul, t: "input", ch: " ", expect_commit: ["nfX", " "], expect_preedit: [])
+        // m f X
+        self.test_debug(hangul: hangul, t: "input", ch: "m", expect_commit: [], expect_preedit: ["mXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "f", expect_commit: [], expect_preedit: ["mfX"])
+        // j d X
+        self.test_debug(hangul: hangul, t: "input", ch: "j", expect_commit: ["mfX"], expect_preedit: ["jXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "d", expect_commit: [], expect_preedit: ["jdX"])
+        // j 6 s
+        self.test_debug(hangul: hangul, t: "input", ch: "j", expect_commit: ["jdX"], expect_preedit: ["jXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "6", expect_commit: [], expect_preedit: ["j6X"])
+        self.test_debug(hangul: hangul, t: "input", ch: "s", expect_commit: [], expect_preedit: ["j6s"])
+        // ' '
+        self.test_debug(hangul: hangul, t: "input", ch: " ", expect_commit: ["j6s", " "], expect_preedit: [])
+        // k v X
+        self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: [], expect_preedit: ["kXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "v", expect_commit: [], expect_preedit: ["kvX"])
+        // kk f w
+        self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: ["kvX"], expect_preedit: ["kXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: [], expect_preedit: ["kkXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "f", expect_commit: [], expect_preedit: ["kkfX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "w", expect_commit: [], expect_preedit: ["kkfw"])
+        // j g s
+        self.test_debug(hangul: hangul, t: "input", ch: "j", expect_commit: ["kkfw"], expect_preedit: ["jXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "g", expect_commit: [], expect_preedit: ["jgX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "s", expect_commit: [], expect_preedit: ["jgs"])
+        self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["jgs"], expect_preedit: [])
+
+         // 고이 접어서 나빌레라.
+        // k v X
+        self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: [], expect_preedit: ["kXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "v", expect_commit: [], expect_preedit: ["kvX"])
+        // j d X
+        self.test_debug(hangul: hangul, t: "input", ch: "j", expect_commit: ["kvX"], expect_preedit: ["jXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "d", expect_commit: [], expect_preedit: ["jdX"])
+        // " "
+        self.test_debug(hangul: hangul, t: "input", ch: " ", expect_commit: ["jdX", " "], expect_preedit: [])
+        // l t 3
+        self.test_debug(hangul: hangul, t: "input", ch: "l", expect_commit: [], expect_preedit: ["lXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "t", expect_commit: [], expect_preedit: ["ltX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "3", expect_commit: [], expect_preedit: ["lt3"])
+        // j t X
+        self.test_debug(hangul: hangul, t: "input", ch: "j", expect_commit: ["lt3"], expect_preedit: ["jXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "t", expect_commit: [], expect_preedit: ["jtX"])
+        // n t X
+        self.test_debug(hangul: hangul, t: "input", ch: "n", expect_commit: ["jtX"], expect_preedit: ["nXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "t", expect_commit: [], expect_preedit: ["ntX"])
+        // " "
+        self.test_debug(hangul: hangul, t: "input", ch: " ", expect_commit: ["ntX", " "], expect_preedit: [])
+        // h f X
+        self.test_debug(hangul: hangul, t: "input", ch: "h", expect_commit: [], expect_preedit: ["hXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "f", expect_commit: [], expect_preedit: ["hfX"])
+        // ; d w
+        self.test_debug(hangul: hangul, t: "input", ch: ";", expect_commit: ["hfX"], expect_preedit: [";XX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "d", expect_commit: [], expect_preedit: [";dX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "w", expect_commit: [], expect_preedit: [";dw"])
+        // y c X
+        self.test_debug(hangul: hangul, t: "input", ch: "y", expect_commit: [";dw"], expect_preedit: ["yXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "c", expect_commit: [], expect_preedit: ["ycX"])
+        // y f X
+        self.test_debug(hangul: hangul, t: "input", ch: "y", expect_commit: ["ycX"], expect_preedit: ["yXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "f", expect_commit: [], expect_preedit: ["yfX"])
+        // .
+        self.test_debug(hangul: hangul, t: "input", ch: ".", expect_commit: ["yfX", "."], expect_preedit: [])
+
+         // 제 13의 아해가
+        // l c X
+        self.test_debug(hangul: hangul, t: "input", ch: "l", expect_commit: [], expect_preedit: ["lXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "c", expect_commit: [], expect_preedit: ["lcX"])
+        // " "
+        self.test_debug(hangul: hangul, t: "input", ch: " ", expect_commit: ["lcX", " "], expect_preedit: [])
+        // M
+        self.test_debug(hangul: hangul, t: "input", ch: "M", expect_commit: ["1"], expect_preedit: [])
+        // >
+        self.test_debug(hangul: hangul, t: "input", ch: ">", expect_commit: ["3"], expect_preedit: [])
+        // j 8 X
+        self.test_debug(hangul: hangul, t: "input", ch: "j", expect_commit: [], expect_preedit: ["jXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "8", expect_commit: [], expect_preedit: ["j8X"])
+        // " "
+        self.test_debug(hangul: hangul, t: "input", ch: " ", expect_commit: ["j8X", " "], expect_preedit: [])
+        // j f X
+        self.test_debug(hangul: hangul, t: "input", ch: "j", expect_commit: [], expect_preedit: ["jXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "f", expect_commit: [], expect_preedit: ["jfX"])
+        // m r X
+        self.test_debug(hangul: hangul, t: "input", ch: "m", expect_commit: ["jfX"], expect_preedit: ["mXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "r", expect_commit: [], expect_preedit: ["mrX"])
+        // k f X
+        self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: ["mrX"], expect_preedit: ["kXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "f", expect_commit: [], expect_preedit: ["kfX"])
+        self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["kfX"], expect_preedit: [])
+        
+         // 가자! 더 높은<곳으로>
+        // k f X
+        self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: [], expect_preedit: ["kXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "f", expect_commit: [], expect_preedit: ["kfX"])
+        // l f X
+        self.test_debug(hangul: hangul, t: "input", ch: "l", expect_commit: ["kfX"], expect_preedit: ["lXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "f", expect_commit: [], expect_preedit: ["lfX"])
+        // B
+        self.test_debug(hangul: hangul, t: "input", ch: "B", expect_commit: ["lfX", "!"], expect_preedit: [])
+        // " "
+        self.test_debug(hangul: hangul, t: "input", ch: " ", expect_commit: [" "], expect_preedit: [])
+        // u t X
+        self.test_debug(hangul: hangul, t: "input", ch: "u", expect_commit: [], expect_preedit: ["uXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "t", expect_commit: [], expect_preedit: ["utX"])
+        // " "
+        self.test_debug(hangul: hangul, t: "input", ch: " ", expect_commit: ["utX", " "], expect_preedit: [])
+        // h v Q
+        self.test_debug(hangul: hangul, t: "input", ch: "h", expect_commit: [], expect_preedit: ["hXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "v", expect_commit: [], expect_preedit: ["hvX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "Q", expect_commit: [], expect_preedit: ["hvQ"])
+        // j g s
+        self.test_debug(hangul: hangul, t: "input", ch: "j", expect_commit: ["hvQ"], expect_preedit: ["jXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "g", expect_commit: [], expect_preedit: ["jgX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "s", expect_commit: [], expect_preedit: ["jgs"])
+        // Y
+        self.test_debug(hangul: hangul, t: "input", ch: "Y", expect_commit: ["jgs", "<"], expect_preedit: [])
+        // k v q
+        self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: [], expect_preedit: ["kXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "v", expect_commit: [], expect_preedit: ["kvX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "q", expect_commit: [], expect_preedit: ["kvq"])
+        // j g X
+        self.test_debug(hangul: hangul, t: "input", ch: "j", expect_commit: ["kvq"], expect_preedit: ["jXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "g", expect_commit: [], expect_preedit: ["jgX"])
+        // y v X
+        self.test_debug(hangul: hangul, t: "input", ch: "y", expect_commit: ["jgX"], expect_preedit: ["yXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "v", expect_commit: [], expect_preedit: ["yvX"])
+        // P
+        self.test_debug(hangul: hangul, t: "input", ch: "P", expect_commit: ["yvX", ">"], expect_preedit: [])
     }
 }

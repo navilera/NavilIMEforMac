@@ -182,6 +182,8 @@ class Hangul {
     func Start(type:String) {
         if type == "318" {
             self.keyboard = Keyboard318()
+        } else if type == "390" {
+            self.keyboard = Keyboard390()
         } else {
             // 일치하는 키보드가 없으면 318을 사용한다.
             self.keyboard = Keyboard318()
@@ -208,6 +210,10 @@ class Hangul {
         self.set_preedit(comp: comp)
         
         return true
+    }
+    
+    func Additional(ascii:String) -> String? {
+        self.keyboard?.etc_layout[ascii]
     }
     
     func Backspace() -> Bool {

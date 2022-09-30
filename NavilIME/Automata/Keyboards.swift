@@ -282,11 +282,13 @@ class Keyboard {
     var chosung_layout:[String:Chosung]
     var jungsung_layout:[String:Jungsung]
     var jongsung_layout:[String:Jongsung]
+    var etc_layout:[String:String]
     
     init() {
         self.chosung_layout = [:]
         self.jungsung_layout = [:]
         self.jongsung_layout = [:]
+        self.etc_layout = [:]
     }
     
     func chosung_proc(comp:Composition, ch:String) -> Bool {

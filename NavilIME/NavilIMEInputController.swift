@@ -173,6 +173,6 @@ open class NavilIMEInputController: IMKInputController {
      이 메서드는 입력 메서드가 현재 상태를 반영하도록 메뉴를 업데이트할 수 있도록 메뉴를 그려야 할 때마다 호출됩니다.
      */
     override open func menu() -> NSMenu! {
-        <#code#>
+        HangulMenu.shared.menu
     }
 }
