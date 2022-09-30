@@ -159,10 +159,20 @@ open class NavilIMEInputController: IMKInputController {
             .appKitDefined, .applicationDefined, .systemDefined).rawValue)
     }
     
+    /*
+     마우스 버튼이 눌리면 현재 조합을 종료하고 커밋
+     */
     override open func mouseDown(onCharacterIndex index: Int, coordinate point: NSPoint, withModifier flags: Int, continueTracking keepTracking: UnsafeMutablePointer<ObjCBool>!, client sender: Any!) -> Bool {
         PrintLog.shared.Log(log: "Mouse Down")
         
         self.commitComposition(sender)
         return false
+    }
+    
+    /*
+     이 메서드는 입력 메서드가 현재 상태를 반영하도록 메뉴를 업데이트할 수 있도록 메뉴를 그려야 할 때마다 호출됩니다.
+     */
+    override open func menu() -> NSMenu! {
+        <#code#>
     }
 }

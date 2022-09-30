@@ -17,6 +17,7 @@
 		CF6561FB28D1AE340085AC8D /* Keyboard318.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6561FA28D1AE340085AC8D /* Keyboard318.swift */; };
 		CF6561FD28D1AE590085AC8D /* Keyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6561FC28D1AE590085AC8D /* Keyboards.swift */; };
 		CF6561FF28D1AE6F0085AC8D /* Testcases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6561FE28D1AE6F0085AC8D /* Testcases.swift */; };
+		CF714A5B28E6C273000CBDEE /* SingletonMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF714A5A28E6C273000CBDEE /* SingletonMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		CF6561FA28D1AE340085AC8D /* Keyboard318.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboard318.swift; sourceTree = "<group>"; };
 		CF6561FC28D1AE590085AC8D /* Keyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboards.swift; sourceTree = "<group>"; };
 		CF6561FE28D1AE6F0085AC8D /* Testcases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Testcases.swift; sourceTree = "<group>"; };
+		CF714A5A28E6C273000CBDEE /* SingletonMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingletonMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				CF39BCA128C42D7200CB35AE /* AppDelegate.swift */,
 				CF39BCAE28C49BDA00CB35AE /* NavilIMEInputController.swift */,
 				CF3237BC28D1AACE008941FE /* SingletonPrintLog.swift */,
+				CF714A5A28E6C273000CBDEE /* SingletonMenu.swift */,
 				CF39BCA328C42D7300CB35AE /* Assets.xcassets */,
 				CF39BCA528C42D7300CB35AE /* MainMenu.xib */,
 				CF39BCA828C42D7300CB35AE /* NavilIME.entitlements */,
@@ -166,6 +169,7 @@
 				CF6561FB28D1AE340085AC8D /* Keyboard318.swift in Sources */,
 				CF3237BD28D1AACE008941FE /* SingletonPrintLog.swift in Sources */,
 				CF6561F928D1AE240085AC8D /* Hangul.swift in Sources */,
+				CF714A5B28E6C273000CBDEE /* SingletonMenu.swift in Sources */,
 				CF39BCAF28C49BDA00CB35AE /* NavilIMEInputController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
