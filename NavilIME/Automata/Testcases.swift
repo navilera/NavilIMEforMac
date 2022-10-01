@@ -74,7 +74,7 @@ class TestCase {
 class Test318 : TestCase {
     func run() {
         let hangul = Hangul()
-        hangul.Start(type: "318")
+        hangul.Start(type: 318)
 
         // 기본 테스트 , "동해물"
         self.test_debug(hangul: hangul, t: "input", ch: "e", expect_commit: [], expect_preedit: ["eXX"])
@@ -241,7 +241,7 @@ class Test318 : TestCase {
 class Test390 : TestCase {
     func run() {
         let hangul = Hangul()
-        hangul.Start(type: "390")
+        hangul.Start(type: 390)
         
          // 얇은 사 하이얀 고깔은
         // j 6 w3

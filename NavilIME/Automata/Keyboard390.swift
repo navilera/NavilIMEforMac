@@ -11,6 +11,9 @@ class Keyboard390 : Keyboard {
     override init() {
         super.init()
         
+        self.name = "세벌390"
+        self.id = 390
+        
         // 초성 레이아웃
         self.chosung_layout = [
             "0":Chosung.Kiyuk,

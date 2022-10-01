@@ -279,12 +279,16 @@ enum Jongsung:unichar {
 }
 
 class Keyboard {
+    var name:String
+    var id:Int
     var chosung_layout:[String:Chosung]
     var jungsung_layout:[String:Jungsung]
     var jongsung_layout:[String:Jongsung]
     var etc_layout:[String:String]
     
     init() {
+        self.name = ""
+        self.id = 0
         self.chosung_layout = [:]
         self.jungsung_layout = [:]
         self.jongsung_layout = [:]

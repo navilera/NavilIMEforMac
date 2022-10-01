@@ -179,15 +179,21 @@ class Hangul {
         self.automata = nil
     }
     
-    func Start(type:String) {
-        if type == "318" {
-            self.keyboard = Keyboard318()
-        } else if type == "390" {
-            self.keyboard = Keyboard390()
-        } else {
-            // 일치하는 키보드가 없으면 318을 사용한다.
-            self.keyboard = Keyboard318()
+    static let hangul_keyboard:[Keyboard] = [
+        Keyboard318(),
+        Keyboard390()
+    ]
+    
+    func Start(type:Int) {
+        // 일치하는 키보드가 없으면 318을 사용한다.
+        self.keyboard = Keyboard318()
+        
+        for k in Hangul.hangul_keyboard {
+            if k.id == type {
+                self.keyboard = k
+            }
         }
+        
         self.automata = Automata(kbd: self.keyboard!)
     }
 

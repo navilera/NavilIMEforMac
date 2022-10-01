@@ -18,6 +18,7 @@
 		CF6561FD28D1AE590085AC8D /* Keyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6561FC28D1AE590085AC8D /* Keyboards.swift */; };
 		CF6561FF28D1AE6F0085AC8D /* Testcases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6561FE28D1AE6F0085AC8D /* Testcases.swift */; };
 		CF714A5B28E6C273000CBDEE /* SingletonMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF714A5A28E6C273000CBDEE /* SingletonMenu.swift */; };
+		CF714A5D28E6C62C000CBDEE /* Keyboard390.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF714A5C28E6C62C000CBDEE /* Keyboard390.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		CF6561FC28D1AE590085AC8D /* Keyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboards.swift; sourceTree = "<group>"; };
 		CF6561FE28D1AE6F0085AC8D /* Testcases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Testcases.swift; sourceTree = "<group>"; };
 		CF714A5A28E6C273000CBDEE /* SingletonMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingletonMenu.swift; sourceTree = "<group>"; };
+		CF714A5C28E6C62C000CBDEE /* Keyboard390.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboard390.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				CF6561FA28D1AE340085AC8D /* Keyboard318.swift */,
 				CF6561FC28D1AE590085AC8D /* Keyboards.swift */,
 				CF6561FE28D1AE6F0085AC8D /* Testcases.swift */,
+				CF714A5C28E6C62C000CBDEE /* Keyboard390.swift */,
 			);
 			path = Automata;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF714A5D28E6C62C000CBDEE /* Keyboard390.swift in Sources */,
 				CF6561FD28D1AE590085AC8D /* Keyboards.swift in Sources */,
 				CF39BCA228C42D7200CB35AE /* AppDelegate.swift in Sources */,
 				CF6561FF28D1AE6F0085AC8D /* Testcases.swift in Sources */,
@@ -312,12 +316,13 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 65;
+				CURRENT_PROJECT_VERSION = 68;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 232X8633XC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NavilIME/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -325,7 +330,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.navilera.inputmethod.NavilIME;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -342,12 +347,13 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 65;
+				CURRENT_PROJECT_VERSION = 68;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 232X8633XC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NavilIME/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -355,7 +361,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.navilera.inputmethod.NavilIME;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

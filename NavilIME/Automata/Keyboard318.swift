@@ -8,8 +8,13 @@
 import Foundation
 
 class Keyboard318 : Keyboard {
+    
+    
     override init() {
         super.init()
+        
+        self.name = "세벌318"
+        self.id = 318
         
         // 초성 레이아웃
         self.chosung_layout = [

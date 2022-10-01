@@ -19,7 +19,7 @@ open class NavilIMEInputController: IMKInputController {
         
         PrintLog.shared.Log(log: "Server Activated")
         self.hangul = Hangul()
-        self.hangul.Start(type: "318")
+        self.hangul.Start(type: 318)
     }
     
     override open func deactivateServer(_ sender: Any!) {
@@ -117,7 +117,7 @@ open class NavilIMEInputController: IMKInputController {
         if commited.count != 0 {
             disp.insertText(commited, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
             
-            PrintLog.shared.Log(log: "65 Commit: \(commited)")
+            PrintLog.shared.Log(log: "85 Commit: \(commited)")
         }
         
         // replacementRange 가 아래 코드와 같아야만 잘 동작한다.
@@ -128,7 +128,7 @@ open class NavilIMEInputController: IMKInputController {
             let rr = NSRange(location: NSNotFound, length: NSNotFound)
             disp.setMarkedText(preediting, selectionRange: sr, replacementRange: rr)
             
-            PrintLog.shared.Log(log: "65 Predit: \(preediting)")
+            PrintLog.shared.Log(log: "85 Predit: \(preediting)")
         }
     }
     
@@ -169,10 +169,33 @@ open class NavilIMEInputController: IMKInputController {
         return false
     }
     
+    
     /*
      이 메서드는 입력 메서드가 현재 상태를 반영하도록 메뉴를 업데이트할 수 있도록 메뉴를 그려야 할 때마다 호출됩니다.
      */
-    override open func menu() -> NSMenu! {
-        HangulMenu.shared.menu
+   override open func menu() -> NSMenu! {
+        return HangulMenu.shared.menu
+   }
+    
+    @objc func select_menu(_ sender:Any?) {
+        PrintLog.shared.Log(log: "Enter the action")
+        
+        if sender == nil {
+            return
+        }
+        
+        PrintLog.shared.Log(log: "Enter the action2")
+        
+        //let sel_menu:NSMenuItem = sender as! NSMenuItem
+        
+        //PrintLog.shared.Log(log: "Select Keyboard \(sel_menu.title)")
+        
+        //let keyboard_identifier:Int = sel_menu.tag
+        //HangulMenu.shared.selected_keyboard = keyboard_identifier
+        
+       // for menu_item in self.items {
+       //     menu_item.state = NSControl.StateValue.off
+       // }
+       // self.item(withTag: sel_menu.tag)?.state = NSControl.StateValue.on
     }
 }
