@@ -19,7 +19,7 @@ open class NavilIMEInputController: IMKInputController {
         
         PrintLog.shared.Log(log: "Server Activated")
         self.hangul = Hangul()
-        self.hangul.Start(type: 318)
+        self.hangul.Start(type: HangulMenu.shared.selected_keyboard)
     }
     
     override open func deactivateServer(_ sender: Any!) {
@@ -117,7 +117,7 @@ open class NavilIMEInputController: IMKInputController {
         if commited.count != 0 {
             disp.insertText(commited, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
             
-            PrintLog.shared.Log(log: "85 Commit: \(commited)")
+            PrintLog.shared.Log(log: "180 Commit: \(commited)")
         }
         
         // replacementRange 가 아래 코드와 같아야만 잘 동작한다.
@@ -128,7 +128,7 @@ open class NavilIMEInputController: IMKInputController {
             let rr = NSRange(location: NSNotFound, length: NSNotFound)
             disp.setMarkedText(preediting, selectionRange: sr, replacementRange: rr)
             
-            PrintLog.shared.Log(log: "85 Predit: \(preediting)")
+            PrintLog.shared.Log(log: "180 Predit: \(preediting)")
         }
     }
     
@@ -177,25 +177,28 @@ open class NavilIMEInputController: IMKInputController {
         return HangulMenu.shared.menu
    }
     
+    /*
+     IMKit 프레임워크는 실제 NSMenu 객체가 어디에 있건간에 NSMenuItem.action은 무조건 InputController 내부에 있어야 한다.
+     그리고 sender는 NSMenuItem이 아니다. <-- 졸라 중요.
+     IMKit에서 생성한 Dictionary 타입 객체가 sender로 전달된다.
+     거기서 NSMenuItem을 찾으려면 ["IMKCommandMenuItem"]으로 Dictionary에서 값을 가져와야 한다.
+     인터넷 그 어디에도 공식적인 문서 자료가 없다. 내가 삽질해서 찾은 것임.
+     */
     @objc func select_menu(_ sender:Any?) {
-        PrintLog.shared.Log(log: "Enter the action")
-        
-        if sender == nil {
+        guard let menuitem = sender as? Dictionary<String, Any> else {
+            PrintLog.shared.Log(log: "WTF \(sender.debugDescription)")
             return
         }
         
-        PrintLog.shared.Log(log: "Enter the action2")
-        
-        //let sel_menu:NSMenuItem = sender as! NSMenuItem
-        
-        //PrintLog.shared.Log(log: "Select Keyboard \(sel_menu.title)")
-        
-        //let keyboard_identifier:Int = sel_menu.tag
-        //HangulMenu.shared.selected_keyboard = keyboard_identifier
-        
-       // for menu_item in self.items {
-       //     menu_item.state = NSControl.StateValue.off
-       // }
-       // self.item(withTag: sel_menu.tag)?.state = NSControl.StateValue.on
+        if let kbd:NSMenuItem = menuitem["IMKCommandMenuItem"] as? NSMenuItem {
+            PrintLog.shared.Log(log: "Selected Keyboard: \(kbd.title)")
+            HangulMenu.shared.selected_keyboard = kbd.tag
+            for mi in HangulMenu.shared.menu.items {
+                mi.state = NSControl.StateValue.off
+            }
+            kbd.state = NSControl.StateValue.on
+        } else {
+            PrintLog.shared.Log(log: "Not NSMenuItem????")
+        }
     }
 }

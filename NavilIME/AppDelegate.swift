@@ -21,8 +21,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSLog("tried connection")
         
         // 디버깅 할 때는 로그를 봐야 하므로 아래 주석을 순서대로 사용한다.
-        PrintLog.shared.scrollView = self.scrollView      // Debuging mode ON
-        //PrintLog.shared.scrollView = nil                    // Debuging mode OFF
+        //PrintLog.shared.scrollView = self.scrollView      // Debuging mode ON
+        PrintLog.shared.scrollView = nil                    // Debuging mode OFF
     }
 
     func applicationWillTerminate(_ notification: Notification) {
