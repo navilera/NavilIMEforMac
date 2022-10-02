@@ -116,7 +116,7 @@ class Keyboard318 : Keyboard {
     
     override func chosung_proc(comp: Composition, ch: String) -> Bool {
         let chokey:String = comp.chosung + ch
-        return self.chosung_layout.contains(where: {(key, value) -> Bool in return key == chokey})
+        return self.chosung_layout[chokey] != nil ? true : false
     }
     
     override func jungsung_proc(comp: Composition, ch: String) -> Bool {

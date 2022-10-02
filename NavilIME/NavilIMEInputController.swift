@@ -9,8 +9,8 @@ import InputMethodKit
 
 @objc(NavilIMEInputController)
 open class NavilIMEInputController: IMKInputController {
-    let key_code:String =       "asdfhgzxcv\tbqweryt123465=97-80]ou[ip\tlj'k;\\,/nm"
-    let shift_key_code:String = "ASDFHGZXCV\tBQWERYT!@#$^%+(&_*)}OU{IP\tLJ\"K:|<?NM"
+    let key_code:String =       "asdfhgzxcv\tbqweryt123465=97-80]ou[ip\tlj'k;\\,/nm."
+    let shift_key_code:String = "ASDFHGZXCV\tBQWERYT!@#$^%+(&_*)}OU{IP\tLJ\"K:|<?NM>"
     
     var hangul:Hangul!
     
@@ -87,14 +87,22 @@ open class NavilIMEInputController: IMKInputController {
             ascii = self.shift_key_code[ascii_idx]
         }
         
-        let eaten:Bool = self.hangul.Process(ascii: String(ascii))
+        var eaten:Bool = self.hangul.Process(ascii: String(ascii))
         if eaten == false {
             PrintLog.shared.Log(log: "Not Hangul: \(ascii)")
             
             self.hangul.Flush()
-            self.update_display(client: client)
             
-            return false
+            // 390 자판처럼 숫자나 기호를 한글 자판에 별도로 맵핑한 경우, 별도 API로 찾는다.
+            var extra:String = ""
+            if let etc = hangul.Additional(ascii: String(ascii)) {
+                extra = etc
+                eaten = true
+            }
+            
+            self.update_display(client: client, backspace: false, additional: extra)
+            
+            return eaten
         }
         
         self.update_display(client: client)
@@ -102,10 +110,10 @@ open class NavilIMEInputController: IMKInputController {
         return true
     }
     
-    func update_display(client:Any!, backspace:Bool = false) {
+    func update_display(client:Any!, backspace:Bool = false, additional:String = "") {
         let commit_unicode:[unichar] = self.hangul.GetCommit()
         let preedit_unicode:[unichar] = self.hangul.GetPreedit()
-        let commited:String = String(utf16CodeUnits:commit_unicode , count: commit_unicode.count)
+        var commited:String = String(utf16CodeUnits:commit_unicode , count: commit_unicode.count)
         let preediting:String = String(utf16CodeUnits: preedit_unicode, count: preedit_unicode.count)
         
         PrintLog.shared.Log(log: "C:'\(commited)' - \(commited.count) P:'\(preediting)' - \(preediting.count)")
@@ -113,6 +121,8 @@ open class NavilIMEInputController: IMKInputController {
         guard let disp = client as? IMKTextInput else {
             return
         }
+        
+        commited += additional
         
         if commited.count != 0 {
             disp.insertText(commited, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))

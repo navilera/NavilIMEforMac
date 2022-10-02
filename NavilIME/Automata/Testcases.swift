@@ -235,6 +235,11 @@ class Test318 : TestCase {
         self.test_debug(hangul: hangul, t: "input", ch: "//b", expect_commit: [], expect_preedit: ["sXX"])
         self.test_debug(hangul: hangul, t: "input", ch: "i", expect_commit: [], expect_preedit: ["siX"])
         self.test_debug(hangul: hangul, t: "input", ch: "i", expect_commit: [], expect_preedit: ["sii"])
+        self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["sii"], expect_preedit: [])
+        // 두ᅡ
+        self.test_debug(hangul: hangul, t: "input", ch: "e", expect_commit: [], expect_preedit: ["eXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "n", expect_commit: [], expect_preedit: ["enX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: ["enX"], expect_preedit: ["XkX"])
     }
 }
 
@@ -387,5 +392,23 @@ class Test390 : TestCase {
         self.test_debug(hangul: hangul, t: "input", ch: "v", expect_commit: [], expect_preedit: ["yvX"])
         // P
         self.test_debug(hangul: hangul, t: "input", ch: "P", expect_commit: ["yvX", ">"], expect_preedit: [])
+        
+        // 도ᅩᅩᅩ
+        self.test_debug(hangul: hangul, t: "input", ch: "u", expect_commit: [], expect_preedit: ["uXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "v", expect_commit: [], expect_preedit: ["uvX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "v", expect_commit: ["uvX"], expect_preedit: ["XvX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "v", expect_commit: ["XvX"], expect_preedit: ["XvX"])
+    }
+}
+
+class Test002 : TestCase {
+    func run() {
+        let hangul = Hangul()
+        hangul.Start(type: 2)
+        
+        // 얇은 사 하이얀 고깔은
+        // 고이 접어서 나빌레라.
+        // 제 13의 아해가
+        // 가자! 더 높은<곳으로>
     }
 }

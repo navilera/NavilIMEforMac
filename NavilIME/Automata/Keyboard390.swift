@@ -59,9 +59,9 @@ class Keyboard390 : Keyboard {
             "/":Jungsung.O,
             
             // 이중모음
-            "vf":Jungsung.Wa,
-            "vr":Jungsung.Wae,
-            "vd":Jungsung.Oe,
+            "vf":Jungsung.Wa,       "/f":Jungsung.Wa,
+            "vr":Jungsung.Wae,      "/r":Jungsung.Wae,
+            "vd":Jungsung.Oe,       "/d":Jungsung.Oe,
             "bt":Jungsung.Weo,      "9t":Jungsung.Weo,
             "bc":Jungsung.We,       "9c":Jungsung.We,
             "bd":Jungsung.Wi,       "9d":Jungsung.Wi
@@ -102,5 +102,20 @@ class Keyboard390 : Keyboard {
             "G":"/",    "H":"'",    "J":"4",    "K":"5",    "L":"6",
             "B":"!",    "N":"0",    "M":"1",    "<":"2",    ">":"3"
         ]
+    }
+    
+    override func chosung_proc(comp: Composition, ch: String) -> Bool {
+        let chokey:String = comp.chosung + ch
+        return self.chosung_layout[chokey] != nil ? true : false
+    }
+    
+    override func jungsung_proc(comp: Composition, ch: String) -> Bool {
+        let jungkey:String = comp.jungsung + ch
+        return self.jungsung_layout[jungkey] != nil ? true : false
+    }
+    
+    override func jongsung_proc(comp: Composition, ch: String) -> Bool {
+        let jongkey:String = comp.jongsung + ch
+        return self.jongsung_layout[jongkey] != nil ? true : false
     }
 }

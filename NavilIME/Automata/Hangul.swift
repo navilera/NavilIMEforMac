@@ -179,9 +179,13 @@ class Hangul {
         self.automata = nil
     }
     
+    /*
+     입력기 프론트엔드에 한글 오토마타 엔진이 지원하는 자판 목록과 인스턴스를 전달함
+     여기에 자판 객체를 등록하면 나빌입력기 전체에서 다 참조해서 사용함
+     */
     static let hangul_keyboard:[Keyboard] = [
         Keyboard318(),
-        Keyboard390()
+        Keyboard390(),
     ]
     
     func Start(type:Int) {
