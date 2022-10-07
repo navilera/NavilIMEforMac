@@ -127,7 +127,7 @@ open class NavilIMEInputController: IMKInputController {
         if commited.count != 0 {
             disp.insertText(commited, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
             
-            PrintLog.shared.Log(log: "180 Commit: \(commited)")
+            PrintLog.shared.Log(log: "221 Commit: \(commited)")
         }
         
         // replacementRange 가 아래 코드와 같아야만 잘 동작한다.
@@ -138,7 +138,7 @@ open class NavilIMEInputController: IMKInputController {
             let rr = NSRange(location: NSNotFound, length: NSNotFound)
             disp.setMarkedText(preediting, selectionRange: sr, replacementRange: rr)
             
-            PrintLog.shared.Log(log: "180 Predit: \(preediting)")
+            PrintLog.shared.Log(log: "221 Predit: \(preediting)")
         }
     }
     
