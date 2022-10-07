@@ -104,17 +104,17 @@ class Keyboard390 : Keyboard {
         ]
     }
     
-    override func chosung_proc(comp: Composition, ch: String) -> Bool {
+    override func chosung_proc(comp: inout Composition, ch: String) -> Bool {
         let chokey:String = comp.chosung + ch
         return self.chosung_layout[chokey] != nil ? true : false
     }
     
-    override func jungsung_proc(comp: Composition, ch: String) -> Bool {
+    override func jungsung_proc(comp: inout Composition, ch: String) -> Bool {
         let jungkey:String = comp.jungsung + ch
         return self.jungsung_layout[jungkey] != nil ? true : false
     }
     
-    override func jongsung_proc(comp: Composition, ch: String) -> Bool {
+    override func jongsung_proc(comp: inout Composition, ch: String) -> Bool {
         let jongkey:String = comp.jongsung + ch
         return self.jongsung_layout[jongkey] != nil ? true : false
     }

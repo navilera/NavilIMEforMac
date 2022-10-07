@@ -40,7 +40,7 @@ struct Automata {
                 comp.done = true
             } else {
                 // 중성은 아직 없음
-                if self.keyboard.chosung_proc(comp: comp, ch: ch) {
+                if self.keyboard.chosung_proc(comp: &comp, ch: ch) {
                     // 쌍자음이면 채움
                     comp.chosung += ch
                 } else {
@@ -57,7 +57,7 @@ struct Automata {
             comp.jungsung = ch
         } else {
             // 중성 입력이 이미 있으면 이중 모음인지 확인
-            if self.keyboard.jungsung_proc(comp: comp, ch: ch) {
+            if self.keyboard.jungsung_proc(comp: &comp, ch: ch) {
                 // 이중 모음이면 채움
                 comp.jungsung += ch
             } else {
@@ -73,7 +73,7 @@ struct Automata {
             comp.jongsung = ch
         } else {
             // 종성 입력이 이미 있으면 겹받침인지 확인
-            if self.keyboard.jongsung_proc(comp: comp, ch: ch) {
+            if self.keyboard.jongsung_proc(comp: &comp, ch: ch) {
                 // 겹받침이면 채움
                 comp.jongsung += ch
             } else {
@@ -93,13 +93,13 @@ struct Automata {
         var comp:Composition = Composition()
         for ch in self.current {
             // 입력이 초성인가?
-            if self.keyboard.chosung_proc(comp: comp, ch: ch) {
+            if self.keyboard.chosung_proc(comp: &comp, ch: ch) {
                 self.chosung(comp: &comp, ch: ch)
             // 입력이 중성인가?
-            } else if self.keyboard.jungsung_proc(comp: comp, ch: ch) {
+            } else if self.keyboard.jungsung_proc(comp: &comp, ch: ch) {
                 self.jungsung(comp: &comp, ch: ch)
             // 입력이 종성인가?
-            } else if self.keyboard.jongsung_proc(comp: comp, ch: ch) {
+            } else if self.keyboard.jongsung_proc(comp: &comp, ch: ch) {
                 self.jongsung(comp:&comp, ch:ch)
             // 허용하는 조합이 아니다. 글자를 완성하고 다음에 조합
             } else {
@@ -186,6 +186,7 @@ class Hangul {
     static let hangul_keyboard:[Keyboard] = [
         Keyboard318(),
         Keyboard390(),
+        Keyboard002()
     ]
     
     func Start(type:Int) {

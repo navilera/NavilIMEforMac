@@ -295,15 +295,15 @@ class Keyboard {
         self.etc_layout = [:]
     }
     
-    func chosung_proc(comp:Composition, ch:String) -> Bool {
+    func chosung_proc(comp:inout Composition, ch:String) -> Bool {
         self.chosung_layout[ch] != nil ? true : false
     }
     
-    func jungsung_proc(comp:Composition, ch:String) -> Bool {
+    func jungsung_proc(comp:inout Composition, ch:String) -> Bool {
         self.jungsung_layout[ch] != nil ? true : false
     }
     
-    func jongsung_proc(comp:Composition, ch:String) -> Bool {
+    func jongsung_proc(comp:inout Composition, ch:String) -> Bool {
         self.jongsung_layout[ch] != nil ? true : false
     }
     
