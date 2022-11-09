@@ -14,6 +14,7 @@
 		CF39BCAF28C49BDA00CB35AE /* NavilIMEInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF39BCAE28C49BDA00CB35AE /* NavilIMEInputController.swift */; };
 		CF39BCB228C4A47200CB35AE /* navilime.tiff in Resources */ = {isa = PBXBuildFile; fileRef = CF39BCB128C4A47200CB35AE /* navilime.tiff */; };
 		CF40CD3028EFF6CC000CCB7B /* Keyboard002.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF40CD2F28EFF6CB000CCB7B /* Keyboard002.swift */; };
+		CF482862291A21DD0020EC2B /* SingletonHotfix.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF482861291A21DD0020EC2B /* SingletonHotfix.swift */; };
 		CF6561F928D1AE240085AC8D /* Hangul.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6561F828D1AE240085AC8D /* Hangul.swift */; };
 		CF6561FB28D1AE340085AC8D /* Keyboard318.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6561FA28D1AE340085AC8D /* Keyboard318.swift */; };
 		CF6561FD28D1AE590085AC8D /* Keyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6561FC28D1AE590085AC8D /* Keyboards.swift */; };
@@ -33,6 +34,7 @@
 		CF39BCB028C49D3800CB35AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CF39BCB128C4A47200CB35AE /* navilime.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = navilime.tiff; sourceTree = "<group>"; };
 		CF40CD2F28EFF6CB000CCB7B /* Keyboard002.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboard002.swift; sourceTree = "<group>"; };
+		CF482861291A21DD0020EC2B /* SingletonHotfix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingletonHotfix.swift; sourceTree = "<group>"; };
 		CF6561F828D1AE240085AC8D /* Hangul.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hangul.swift; sourceTree = "<group>"; };
 		CF6561FA28D1AE340085AC8D /* Keyboard318.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboard318.swift; sourceTree = "<group>"; };
 		CF6561FC28D1AE590085AC8D /* Keyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboards.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				CF39BCAE28C49BDA00CB35AE /* NavilIMEInputController.swift */,
 				CF3237BC28D1AACE008941FE /* SingletonPrintLog.swift */,
 				CF714A5A28E6C273000CBDEE /* SingletonMenu.swift */,
+				CF482861291A21DD0020EC2B /* SingletonHotfix.swift */,
 				CF39BCA328C42D7300CB35AE /* Assets.xcassets */,
 				CF39BCA528C42D7300CB35AE /* MainMenu.xib */,
 				CF39BCA828C42D7300CB35AE /* NavilIME.entitlements */,
@@ -176,6 +179,7 @@
 				CF6561FF28D1AE6F0085AC8D /* Testcases.swift in Sources */,
 				CF6561FB28D1AE340085AC8D /* Keyboard318.swift in Sources */,
 				CF3237BD28D1AACE008941FE /* SingletonPrintLog.swift in Sources */,
+				CF482862291A21DD0020EC2B /* SingletonHotfix.swift in Sources */,
 				CF6561F928D1AE240085AC8D /* Hangul.swift in Sources */,
 				CF714A5B28E6C273000CBDEE /* SingletonMenu.swift in Sources */,
 				CF39BCAF28C49BDA00CB35AE /* NavilIMEInputController.swift in Sources */,
