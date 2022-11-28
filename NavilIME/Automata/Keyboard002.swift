@@ -75,33 +75,33 @@ class Keyboard002 : Keyboard {
         
         // 종성 레이아웃
         self.jongsung_layout = [
-            "r":Jongsung.Kiyeok,
+            "r":Jongsung.Kiyeok,    // 쌍자음 있으므로 대문자 맵핑 안함
             "R":Jongsung.Ssangkiyeok,
-            "rt":Jongsung.Kiyeoksios,
-            "s":Jongsung.Nieun,
-            "sw":Jongsung.Nieuncieuc,
-            "sg":Jongsung.Nieunhieuh,
-            "e":Jongsung.Tikeut,
-            "f":Jongsung.Rieul,
-            "fr":Jongsung.Rieulkiyeok,
-            "fa":Jongsung.Rieulmieum,
-            "fq":Jongsung.Rieulpieup,
-            "ft":Jongsung.Rieulsios,
-            "fx":Jongsung.Rieulthieuth,
-            "fv":Jongsung.Rieulphieuph,
-            "fg":Jongsung.Rieulhieuh,
-            "a":Jongsung.Mieum,
-            "q":Jongsung.Pieup,
-            "qt":Jongsung.Pieupsios,
-            "t":Jongsung.Sios,
+            "rt":Jongsung.Kiyeoksios, "Rt":Jongsung.Kiyeoksios, "RT":Jongsung.Kiyeoksios,
+            "s":Jongsung.Nieun, "S":Jongsung.Nieun,
+            "sw":Jongsung.Nieuncieuc, "Sw":Jongsung.Nieuncieuc, "SW":Jongsung.Nieuncieuc,
+            "sg":Jongsung.Nieunhieuh, "Sg":Jongsung.Nieunhieuh, "SG":Jongsung.Nieunhieuh,
+            "e":Jongsung.Tikeut, "E":Jongsung.Tikeut,
+            "f":Jongsung.Rieul, "F":Jongsung.Rieul,
+            "fr":Jongsung.Rieulkiyeok, "Fr":Jongsung.Rieulkiyeok, "FR":Jongsung.Rieulkiyeok,
+            "fa":Jongsung.Rieulmieum, "Fa":Jongsung.Rieulmieum, "FA":Jongsung.Rieulmieum,
+            "fq":Jongsung.Rieulpieup, "Fq":Jongsung.Rieulpieup, "FQ":Jongsung.Rieulpieup,
+            "ft":Jongsung.Rieulsios, "Ft":Jongsung.Rieulsios, "FT":Jongsung.Rieulsios,
+            "fx":Jongsung.Rieulthieuth, "Fx":Jongsung.Rieulthieuth, "FX":Jongsung.Rieulthieuth,
+            "fv":Jongsung.Rieulphieuph, "Fv":Jongsung.Rieulphieuph, "FV":Jongsung.Rieulphieuph,
+            "fg":Jongsung.Rieulhieuh, "Fg":Jongsung.Rieulhieuh, "FG":Jongsung.Rieulhieuh,
+            "a":Jongsung.Mieum, "A":Jongsung.Mieum,
+            "q":Jongsung.Pieup, "Q":Jongsung.Pieup,
+            "qt":Jongsung.Pieupsios, "Qt":Jongsung.Pieupsios, "QT":Jongsung.Pieupsios,
+            "t":Jongsung.Sios, // 쌍자음 있으므로 대문자 맵핑 안함
             "T":Jongsung.Ssangsios,
-            "d":Jongsung.Ieung,
-            "w":Jongsung.Cieuc,
-            "c":Jongsung.Chieuch,
-            "z":Jongsung.Khieukh,
-            "x":Jongsung.Thieuth,
-            "v":Jongsung.Phieuph,
-            "g":Jongsung.Hieuh
+            "d":Jongsung.Ieung, "D":Jongsung.Ieung,
+            "w":Jongsung.Cieuc, "W":Jongsung.Cieuc,
+            "c":Jongsung.Chieuch, "C":Jongsung.Chieuch,
+            "z":Jongsung.Khieukh, "Z":Jongsung.Khieukh,
+            "x":Jongsung.Thieuth, "X":Jongsung.Thieuth,
+            "v":Jongsung.Phieuph, "V":Jongsung.Phieuph,
+            "g":Jongsung.Hieuh, "G":Jongsung.Hieuh
         ]
     }
     
