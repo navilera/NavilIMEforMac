@@ -88,7 +88,7 @@ open class NavilIMEInputController: IMKInputController {
         }
         
         let ascii_idx = self.key_code.index(self.key_code.startIndex, offsetBy: Int(keycode))
-        var ascii = self.key_code[ascii_idx]
+        var ascii = self.key_code[ascii_idx] // String(describing: event.characters))
         let shift:Bool = flag.contains(.shift)
         if shift == true {
             ascii = self.shift_key_code[ascii_idx]
@@ -134,7 +134,7 @@ open class NavilIMEInputController: IMKInputController {
         if commited.count != 0 {
             disp.insertText(commited, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
             
-            PrintLog.shared.Log(log: "221 Commit: \(commited)")
+            PrintLog.shared.Log(log: "231 Commit: \(commited)")
         }
         
         // replacementRange 가 아래 코드와 같아야만 잘 동작한다.
@@ -143,9 +143,10 @@ open class NavilIMEInputController: IMKInputController {
             // 이 때 명시적으로 length = 0 인 NSRange를 setMarkedText()에 주어야만 자연스럽게 처리된다.
             let sr = NSRange(location: 0, length: preediting.count)
             let rr = NSRange(location: NSNotFound, length: NSNotFound)
+            PrintLog.shared.Log(log: "RR: \(rr) SR: \(sr) on \(String(describing: disp.bundleIdentifier()))")
             disp.setMarkedText(preediting, selectionRange: sr, replacementRange: rr)
             
-            PrintLog.shared.Log(log: "221 Predit: \(preediting)")
+            PrintLog.shared.Log(log: "231 Predit: \(preediting)")
         }
     }
     
