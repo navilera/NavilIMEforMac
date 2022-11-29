@@ -278,6 +278,140 @@ enum Jongsung:unichar {
     case YetSsangnieun        = 0x11ff // ᇿ
 }
 
+// 한글 호환 자모 코드
+enum Hohan:unichar {
+    // 자음
+    case KIYEOK         = 0x3131 // ㄱ
+    case SSANGKIYEOK    = 0x3132 // ㄲ
+    case KIYEOK_SIOS    = 0x3133 // ㄳ
+    case NIEUN          = 0x3134 // ㄴ
+    case NIEUN_CIEUC    = 0x3135 // ㄵ
+    case NIEUN_HIEUH    = 0x3136 // ㄶ
+    case TIKEUT         = 0x3137 // ㄷ
+    case SSANGTIKEUT    = 0x3138 // ㄸ
+    case RIEUL          = 0x3139 // ㄹ
+    case RIEUL_KIYEOK   = 0x313a // ㄺ
+    case RIEUL_MIEUM    = 0x313b // ㄻ
+    case RIEUL_PIEUP    = 0x313c // ㄼ
+    case RIEUL_SIOS     = 0x313d // ㄽ
+    case RIEUL_THIEUTH  = 0x313e // ㄾ
+    case RIEUL_PHIEUPH  = 0x313f // ㄿ
+    case RIEUL_HIEUH    = 0x3140 // ㅀ
+    case MIEUM          = 0x3141 // ㅁ
+    case PIEUP          = 0x3142 // ㅂ
+    case SSANGPIEUP     = 0x3143 // ㅃ
+    case PIEUP_SIOS     = 0x3144 // ㅄ
+    case SIOS           = 0x3145 // ㅅ
+    case SSANGSIOS      = 0x3146 // ㅆ
+    case IEUNG          = 0x3147 // ㅇ
+    case CIEUC          = 0x3148 // ㅈ
+    case SSANGCIEUC     = 0x3149 // ㅉ
+    case CHIEUCH        = 0x314a // ㅊ
+    case KHIEUKH        = 0x314b // ㅋ
+    case THIEUTH        = 0x314c // ㅌ
+    case PHIEUPH        = 0x314d // ㅍ
+    case HIEUH          = 0x314e // ㅎ
+    // 모음
+    case A              = 0x314f // ㅏ
+    case AE             = 0x3150 // ㅐ
+    case YA             = 0x3151 // ㅑ
+    case YAE            = 0x3152 // ㅒ
+    case EO             = 0x3153 // ㅓ
+    case E              = 0x3154 // ㅔ
+    case YEO            = 0x3155 // ㅕ
+    case YE             = 0x3156 // ㅖ
+    case O              = 0x3157 // ㅗ
+    case WA             = 0x3158 // ㅘ
+    case WAE            = 0x3159 // ㅙ
+    case OE             = 0x315a // ㅚ
+    case YO             = 0x315b // ㅛ
+    case U              = 0x315c // ㅜ
+    case WEO            = 0x315d // ㅝ
+    case WE             = 0x315e // ㅞ
+    case WI             = 0x315f // ㅟ
+    case YU             = 0x3160 // ㅠ
+    case EU             = 0x3161 // ㅡ
+    case YI             = 0x3162 // ㅢ
+    case I              = 0x3163 // ㅣ
+    case FILLER         = 0x3164 //
+}
+
+let ChosungHohanMap:[Chosung:Hohan] = [
+    Chosung.Giyuk    : Hohan.KIYEOK,        //ㄱ
+    Chosung.SsGiyuk  : Hohan.SSANGKIYEOK,   //ᄁ
+    Chosung.Nien     : Hohan.NIEUN,         //ᄂ
+    Chosung.Digek    : Hohan.TIKEUT,        //ᄃ
+    Chosung.SsDigek  : Hohan.SSANGTIKEUT,   //ᄄ
+    Chosung.Riel     : Hohan.RIEUL,         //ᄅ
+    Chosung.Miem     : Hohan.MIEUM,         //ᄆ
+    Chosung.Biep     : Hohan.PIEUP,         //ᄇ
+    Chosung.SsBiep   : Hohan.SSANGPIEUP,    //ᄈ
+    Chosung.Siot     : Hohan.SIOS,          //ᄉ
+    Chosung.SsSiot   : Hohan.SSANGSIOS,     //ᄊ
+    Chosung.Yieng    : Hohan.IEUNG,         //ᄋ
+    Chosung.Jiek     : Hohan.CIEUC,         //ᄌ
+    Chosung.SsJiek   : Hohan.SSANGCIEUC,    //ᄍ
+    Chosung.Chiek    : Hohan.CHIEUCH,       //ᄎ
+    Chosung.Kiyuk    : Hohan.KHIEUKH,       //ᄏ
+    Chosung.Tigek    : Hohan.THIEUTH,       //ᄐ
+    Chosung.Piep     : Hohan.PHIEUPH,       //ᄑ
+    Chosung.Hiek     : Hohan.HIEUH          //ᄒ
+]
+
+let JungsungHohanMap:[Jungsung:Hohan] = [
+        Jungsung.A      : Hohan.A,  // ᅡ
+        Jungsung.Ae     : Hohan.AE, // ᅢ
+        Jungsung.Ya     : Hohan.YA, // ᅣ
+        Jungsung.Yae    : Hohan.YAE,// ᅤ
+        Jungsung.Eo     : Hohan.EO, // ᅥ
+        Jungsung.E      : Hohan.E,  // ᅦ
+        Jungsung.Yeo    : Hohan.YEO,// ᅧ
+        Jungsung.Ye     : Hohan.YE, // ᅨ
+        Jungsung.O      : Hohan.O,  // ᅩ
+        Jungsung.Wa     : Hohan.WA, // ᅪ
+        Jungsung.Wae    : Hohan.WAE,// ᅫ
+        Jungsung.Oe     : Hohan.OE, // ᅬ
+        Jungsung.Yo     : Hohan.YO, // ᅭ
+        Jungsung.U      : Hohan.U,  // ᅮ
+        Jungsung.Weo    : Hohan.WEO,// ᅯ
+        Jungsung.We     : Hohan.WE, // ᅰ
+        Jungsung.Wi     : Hohan.WI, // ᅱ
+        Jungsung.Yu     : Hohan.YU, // ᅲ
+        Jungsung.Eu     : Hohan.EU, // ᅳ
+        Jungsung.Yi     : Hohan.YI, // ᅴ
+        Jungsung.I      : Hohan.I   // ᅵ
+    ]
+
+let JongsungHohanMap:[Jongsung:Hohan] = [
+        Jongsung.Kiyeok           : Hohan.KIYEOK,       // ᆨ
+        Jongsung.Ssangkiyeok      : Hohan.SSANGKIYEOK,  // ᆩ
+        Jongsung.Kiyeoksios       : Hohan.KIYEOK_SIOS,  // ᆪ
+        Jongsung.Nieun            : Hohan.NIEUN,        // ᆫ
+        Jongsung.Nieuncieuc       : Hohan.NIEUN_CIEUC,  // ᆬ
+        Jongsung.Nieunhieuh       : Hohan.NIEUN_HIEUH,  // ᆭ
+        Jongsung.Tikeut           : Hohan.TIKEUT,       // ᆮ
+        Jongsung.Rieul            : Hohan.RIEUL,        // ᆯ
+        Jongsung.Rieulkiyeok      : Hohan.RIEUL_KIYEOK, // ᆰ
+        Jongsung.Rieulmieum       : Hohan.RIEUL_MIEUM,  // ᆱ
+        Jongsung.Rieulpieup       : Hohan.RIEUL_PIEUP,  // ᆲ
+        Jongsung.Rieulsios        : Hohan.RIEUL_SIOS,   // ᆳ
+        Jongsung.Rieulthieuth     : Hohan.RIEUL_THIEUTH,// ᆴ
+        Jongsung.Rieulphieuph     : Hohan.RIEUL_PHIEUPH,// ᆵ
+        Jongsung.Rieulhieuh       : Hohan.RIEUL_HIEUH,  // ᆶ
+        Jongsung.Mieum            : Hohan.MIEUM,        // ᆷ
+        Jongsung.Pieup            : Hohan.PIEUP,        // ᆸ
+        Jongsung.Pieupsios        : Hohan.PIEUP_SIOS,   // ᆹ
+        Jongsung.Sios             : Hohan.SIOS,         // ᆺ
+        Jongsung.Ssangsios        : Hohan.SSANGSIOS,    // ᆻ
+        Jongsung.Ieung            : Hohan.IEUNG,        // ᆼ
+        Jongsung.Cieuc            : Hohan.CIEUC,        // ᆽ
+        Jongsung.Chieuch          : Hohan.CHIEUCH,      // ᆾ
+        Jongsung.Khieukh          : Hohan.KHIEUKH,      // ᆿ
+        Jongsung.Thieuth          : Hohan.THIEUTH,      // ᇀ
+        Jongsung.Phieuph          : Hohan.PHIEUPH,      // ᇁ
+        Jongsung.Hieuh            : Hohan.HIEUH         // ᇂ
+    ]
+
 class Keyboard {
     var name:String
     var id:Int
@@ -334,26 +468,31 @@ class Keyboard {
             return mac_nfd
         }
         
-        // 맥 기본앱인 메모(Memo) 앱은 중성이 혼자 있고 조합 중인 상황에서 무조건 앞에 한글자를 잡아서 초성으로 간주한다.
-        // 그래서 초성만 filler를 넣어준다. 다른 앱에서도 적당히 괜찮게 동작한다.
-        
         // 초성
         if let chosung_unicode = self.chosung_layout[comp.chosung] {
-            mac_nfd.append(chosung_unicode.rawValue)
-        } else {
-            if is_commit == false {
-                mac_nfd.append(Chosung.Filler.rawValue)
+            if let hohan = ChosungHohanMap[chosung_unicode] {
+                mac_nfd.append(hohan.rawValue)
+            } else {
+                mac_nfd.append(chosung_unicode.rawValue)
             }
         }
         
         // 중성
-        if let jungsung_unicode = self.jungsung_layout[comp.jungsung]{
-            mac_nfd.append(jungsung_unicode.rawValue)
+        if let jungsung_unicode = self.jungsung_layout[comp.jungsung] {
+            if let hohan = JungsungHohanMap[jungsung_unicode] {
+                mac_nfd.append(hohan.rawValue)
+            } else {
+                mac_nfd.append(jungsung_unicode.rawValue)
+            }
         }
         
         // 종성
         if let jongsung_unicode = self.jongsung_layout[comp.jongsung] {
-            mac_nfd.append(jongsung_unicode.rawValue)
+            if let hohan = JongsungHohanMap[jongsung_unicode] {
+                mac_nfd.append(hohan.rawValue)
+            } else {
+                mac_nfd.append(jongsung_unicode.rawValue)
+            }
         }
         
         PrintLog.shared.Log(log: "NFD: \(mac_nfd)")
