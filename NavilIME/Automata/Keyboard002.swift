@@ -28,16 +28,16 @@ class Keyboard002 : Keyboard {
             "r":Chosung.Giyuk,
             "t":Chosung.Siot,
             
-            "a":Chosung.Miem,
-            "s":Chosung.Nien,
-            "d":Chosung.Yieng,
-            "f":Chosung.Riel,
-            "g":Chosung.Hiek,
+            "a":Chosung.Miem, "A":Chosung.Miem,
+            "s":Chosung.Nien, "S":Chosung.Nien,
+            "d":Chosung.Yieng, "D":Chosung.Yieng,
+            "f":Chosung.Riel, "F":Chosung.Riel,
+            "g":Chosung.Hiek, "G":Chosung.Hiek,
             
-            "z":Chosung.Kiyuk,
-            "x":Chosung.Tigek,
-            "c":Chosung.Chiek,
-            "v":Chosung.Piep
+            "z":Chosung.Kiyuk, "Z":Chosung.Kiyuk,
+            "x":Chosung.Tigek, "X":Chosung.Tigek,
+            "c":Chosung.Chiek, "C":Chosung.Chiek,
+            "v":Chosung.Piep, "V":Chosung.Piep
         ]
         
         // 중성 레이아웃

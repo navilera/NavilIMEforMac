@@ -539,5 +539,12 @@ class Test002 : TestCase {
         self.test_debug(hangul: hangul, t: "input", ch: "h", expect_commit: ["XhX"], expect_preedit: ["XhX"])
         self.test_debug(hangul: hangul, t: "input", ch: "h", expect_commit: ["XhX"], expect_preedit: ["XhX"])
         self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["XhX"], expect_preedit: [])
+        
+        self.test_debug(hangul: hangul, t: "input", ch: "g", expect_commit: [], expect_preedit: ["gXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "o", expect_commit: [], expect_preedit: ["goX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "T", expect_commit: [], expect_preedit: ["goT"])
+        self.test_debug(hangul: hangul, t: "input", ch: "S", expect_commit: ["goT"], expect_preedit: ["SXX"])
     }
+    
+    
 }
