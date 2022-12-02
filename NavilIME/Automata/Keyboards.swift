@@ -468,6 +468,12 @@ class Keyboard {
             return mac_nfd
         }
         
+        /*
+         * NFD로 정규화 해서 내보내는 경우는 글자가 완성되지 않은 상태일 때 (초성만, 중성만, 종성만 등..) 뿐이다.
+         * 이때 한글 첫가끝 영역 (0x1100 ~ ) 대신 한글 호환 자모 영역 (0x3131 ~) 에서 자모를 가져와서 내보낸다.
+         * 이래야 더 안정적이고 기대한대로 동작한다. 아마도 맥OS가 한글 호환 자모를 더 잘 처리하나보다.
+         */
+        
         // 초성
         if let chosung_unicode = self.chosung_layout[comp.chosung] {
             if let hohan = ChosungHohanMap[chosung_unicode] {

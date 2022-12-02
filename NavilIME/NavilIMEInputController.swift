@@ -215,6 +215,11 @@ open class NavilIMEInputController: IMKInputController {
                 mi.state = NSControl.StateValue.off
             }
             kbd.state = NSControl.StateValue.on
+            
+            // 바꾼 한글 자판을 즉시 적용
+            self.hangul.Flush()
+            self.hangul.Stop()
+            self.hangul.Start(type: HangulMenu.shared.selected_keyboard)
         } else {
             PrintLog.shared.Log(log: "Not NSMenuItem????")
         }

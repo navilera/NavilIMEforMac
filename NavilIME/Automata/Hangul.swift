@@ -191,7 +191,7 @@ class Hangul {
     
     func Start(type:Int) {
         // 일치하는 키보드가 없으면 318을 사용한다.
-        self.keyboard = Keyboard318()
+        self.keyboard = Hangul.hangul_keyboard[0]
         
         for k in Hangul.hangul_keyboard {
             if k.id == type {
