@@ -23,6 +23,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // 디버깅 할 때는 로그를 봐야 하므로 아래 주석을 순서대로 사용한다.
         //PrintLog.shared.scrollView = self.scrollView      // Debuging mode ON
         PrintLog.shared.scrollView = nil                    // Debuging mode OFF
+        
+        if PrintLog.shared.scrollView == nil {
+            if let w = NSApplication.shared.windows.first {
+                w.close()
+            }
+        }
     }
 
     func applicationWillTerminate(_ notification: Notification) {
