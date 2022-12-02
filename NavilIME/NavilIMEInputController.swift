@@ -210,7 +210,7 @@ open class NavilIMEInputController: IMKInputController {
         
         if let kbd:NSMenuItem = menuitem["IMKCommandMenuItem"] as? NSMenuItem {
             PrintLog.shared.Log(log: "Selected Keyboard: \(kbd.title)")
-            HangulMenu.shared.selected_keyboard = kbd.tag
+            HangulMenu.shared.change_selected_keyboard(id: kbd.tag)
             for mi in HangulMenu.shared.menu.items {
                 mi.state = NSControl.StateValue.off
             }
