@@ -24,6 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //PrintLog.shared.scrollView = self.scrollView      // Debuging mode ON
         PrintLog.shared.scrollView = nil                    // Debuging mode OFF
         
+        // 재부팅 후 나오는 윈도우를 바로 끔 (디버그 모드일 땐 안끔)
         if PrintLog.shared.scrollView == nil {
             if let w = NSApplication.shared.windows.first {
                 w.close()
