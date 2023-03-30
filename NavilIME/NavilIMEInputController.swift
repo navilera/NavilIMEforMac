@@ -9,8 +9,8 @@ import InputMethodKit
 
 @objc(NavilIMEInputController)
 open class NavilIMEInputController: IMKInputController {
-    let key_code:String =       "asdfhgzxcv\tbqweryt123465=97-80]ou[ip\tlj'k;\\,/nm."
-    let shift_key_code:String = "ASDFHGZXCV\tBQWERYT!@#$^%+(&_*)}OU{IP\tLJ\"K:|<?NM>"
+    let key_code:String =       "asdfhgzxcv\tbqweryt123465=97-80]ou[ip\tlj'k;\\,/nm.\t `"
+    let shift_key_code:String = "ASDFHGZXCV\tBQWERYT!@#$^%+(&_*)}OU{IP\tLJ\"K:|<?NM>\t ~"
     
     var hangul:Hangul!
     
@@ -67,6 +67,17 @@ open class NavilIMEInputController: IMKInputController {
             return false
         }
         
+        let enter_return = 0x24 // MacOS defined
+        let tab = 0x30          // MacOS defined
+        if keycode == enter_return || keycode == tab {
+            PrintLog.shared.Log(log: "Enter or Tab")
+            
+            self.hangul.Flush()
+            self.update_display(client: client)
+            
+            return false
+        }
+        
         let backspace = 0x33    // MacOS defined
         if keycode == backspace {
             PrintLog.shared.Log(log: "Backspace")
@@ -94,26 +105,23 @@ open class NavilIMEInputController: IMKInputController {
             ascii = self.shift_key_code[ascii_idx]
         }
         
-        var eaten:Bool = self.hangul.Process(ascii: String(ascii))
-        if eaten == false {
+        let is_hangul:Bool = self.hangul.Process(ascii: String(ascii))
+        if is_hangul == false {
             PrintLog.shared.Log(log: "Not Hangul: \(ascii)")
             
             self.hangul.Flush()
             
-            // 390 자판처럼 숫자나 기호를 한글 자판에 별도로 맵핑한 경우, 별도 API로 찾는다.
-            var extra:String = ""
+            // 기호가 다른 키보드에서 나빌 입력기를 쓸 때, 기본 기호가 아닌 다른 기호가 나온다.
+            // 나빌 입력기는 기본 키코드에 해당하는 기호를 그대로 출력한다.
+            var extra:String = String(ascii)
+            // 390 자판처럼 숫자나 기호를 한글 자판에 별도로 맵핑한 경우, 별도 API로 기호를 바꾼다.
             if let etc = hangul.Additional(ascii: String(ascii)) {
                 extra = etc
-                eaten = true
             }
-            
             self.update_display(client: client, backspace: false, additional: extra)
-            
-            return eaten
+        } else {
+            self.update_display(client: client)
         }
-        
-        self.update_display(client: client)
-        
         return true
     }
     
@@ -134,7 +142,7 @@ open class NavilIMEInputController: IMKInputController {
         if commited.count != 0 {
             disp.insertText(commited, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
             
-            PrintLog.shared.Log(log: "248 Commit: \(commited)")
+            PrintLog.shared.Log(log: "258 Commit: \(commited)")
         }
         
         // replacementRange 가 아래 코드와 같아야만 잘 동작한다.
@@ -146,7 +154,7 @@ open class NavilIMEInputController: IMKInputController {
             PrintLog.shared.Log(log: "RR: \(rr) SR: \(sr) on \(String(describing: disp.bundleIdentifier()))")
             disp.setMarkedText(preediting, selectionRange: sr, replacementRange: rr)
             
-            PrintLog.shared.Log(log: "248 Predit: \(preediting)")
+            PrintLog.shared.Log(log: "258 Predit: \(preediting)")
         }
     }
     
