@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CF3237BD28D1AACE008941FE /* SingletonPrintLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3237BC28D1AACE008941FE /* SingletonPrintLog.swift */; };
+		CF34BD8B29D6C0A200F69E9E /* SingletonOpt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34BD8A29D6C0A200F69E9E /* SingletonOpt.swift */; };
 		CF39BCA228C42D7200CB35AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF39BCA128C42D7200CB35AE /* AppDelegate.swift */; };
 		CF39BCA428C42D7300CB35AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF39BCA328C42D7300CB35AE /* Assets.xcassets */; };
 		CF39BCA728C42D7300CB35AE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF39BCA528C42D7300CB35AE /* MainMenu.xib */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		CF3237BC28D1AACE008941FE /* SingletonPrintLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingletonPrintLog.swift; sourceTree = "<group>"; };
+		CF34BD8A29D6C0A200F69E9E /* SingletonOpt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingletonOpt.swift; sourceTree = "<group>"; };
 		CF39BC9E28C42D7200CB35AE /* NavilIME.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavilIME.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF39BCA128C42D7200CB35AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF39BCA328C42D7300CB35AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				CF3237BC28D1AACE008941FE /* SingletonPrintLog.swift */,
 				CF714A5A28E6C273000CBDEE /* SingletonMenu.swift */,
 				CF482861291A21DD0020EC2B /* SingletonHotfix.swift */,
+				CF34BD8A29D6C0A200F69E9E /* SingletonOpt.swift */,
 				CF39BCA328C42D7300CB35AE /* Assets.xcassets */,
 				CF39BCA528C42D7300CB35AE /* MainMenu.xib */,
 				CF39BCA828C42D7300CB35AE /* NavilIME.entitlements */,
@@ -179,6 +182,7 @@
 				CF6561FF28D1AE6F0085AC8D /* Testcases.swift in Sources */,
 				CF6561FB28D1AE340085AC8D /* Keyboard318.swift in Sources */,
 				CF3237BD28D1AACE008941FE /* SingletonPrintLog.swift in Sources */,
+				CF34BD8B29D6C0A200F69E9E /* SingletonOpt.swift in Sources */,
 				CF482862291A21DD0020EC2B /* SingletonHotfix.swift in Sources */,
 				CF6561F928D1AE240085AC8D /* Hangul.swift in Sources */,
 				CF714A5B28E6C273000CBDEE /* SingletonMenu.swift in Sources */,
@@ -324,7 +328,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 260;
+				CURRENT_PROJECT_VERSION = 283;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 232X8633XC;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -338,7 +342,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 5.5;
+				MARKETING_VERSION = 6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.navilera.inputmethod.NavilIME;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -355,7 +359,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 260;
+				CURRENT_PROJECT_VERSION = 283;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 232X8633XC;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -369,7 +373,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 5.5;
+				MARKETING_VERSION = 6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.navilera.inputmethod.NavilIME;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -139,10 +139,11 @@ open class NavilIMEInputController: IMKInputController {
         
         commited += additional
         
+        let build_count = 283
         if commited.count != 0 {
             disp.insertText(commited, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
             
-            PrintLog.shared.Log(log: "258 Commit: \(commited)")
+            PrintLog.shared.Log(log: "\(build_count) Commit: \(commited)")
         }
         
         // replacementRange 가 아래 코드와 같아야만 잘 동작한다.
@@ -154,7 +155,7 @@ open class NavilIMEInputController: IMKInputController {
             PrintLog.shared.Log(log: "RR: \(rr) SR: \(sr) on \(String(describing: disp.bundleIdentifier()))")
             disp.setMarkedText(preediting, selectionRange: sr, replacementRange: rr)
             
-            PrintLog.shared.Log(log: "258 Predit: \(preediting)")
+            PrintLog.shared.Log(log: "\(build_count) Predit: \(preediting)")
         }
     }
     
@@ -218,6 +219,14 @@ open class NavilIMEInputController: IMKInputController {
         
         if let kbd:NSMenuItem = menuitem["IMKCommandMenuItem"] as? NSMenuItem {
             PrintLog.shared.Log(log: "Selected Keyboard: \(kbd.title)")
+            if kbd.tag == OptHandler.shared.opt_menu_tag {
+                PrintLog.shared.Log(log: "This is Option: \(kbd.title)")
+                self.hangul.Flush()
+                if let w = NSApplication.shared.windows.first {
+                    w.makeKeyAndOrderFront(sender)
+                }
+                return
+            }
             HangulMenu.shared.change_selected_keyboard(id: kbd.tag)
             for mi in HangulMenu.shared.menu.items {
                 mi.state = NSControl.StateValue.off

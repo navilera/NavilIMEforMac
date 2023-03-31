@@ -43,6 +43,15 @@ class HangulMenu {
             }
             self.menu.addItem(keyboard_menuitem)
         }
+        
+        // 옵션
+        let option_menuitem = NSMenuItem()
+        option_menuitem.title = "옵션"
+        option_menuitem.tag = OptHandler.shared.opt_menu_tag
+        option_menuitem.action = #selector(NavilIMEInputController.select_menu(_:))
+        option_menuitem.isEnabled = true
+        self.menu.addItem(option_menuitem)
+        
         self.menu.autoenablesItems = true
     }
 }

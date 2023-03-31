@@ -24,16 +24,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //PrintLog.shared.scrollView = self.scrollView      // Debuging mode ON
         PrintLog.shared.scrollView = nil                    // Debuging mode OFF
         
-        // 재부팅 후 나오는 윈도우를 바로 끔 (디버그 모드일 땐 안끔)
         if PrintLog.shared.scrollView == nil {
-            if let w = NSApplication.shared.windows.first {
-                w.close()
-            }
+            self.scrollView.isHidden = true
+        }
+        
+        // 재부팅 후 나오는 윈도우를 바로 끔
+        if let w = NSApplication.shared.windows.first {
+            w.close()
         }
     }
 
     func applicationWillTerminate(_ notification: Notification) {
         // Insert code here to tear down your application
+    }
+    
+    
+    @IBAction func opt_dubul_sel_no_shift(_ sender: NSButton) {
+        let no_shift_checkbox = sender
+        if no_shift_checkbox.state == NSControl.StateValue.on {
+            PrintLog.shared.Log(log: "No shift off")
+            OptHandler.shared.Dubul_no_shift(sel: 1)
+        } else {
+            PrintLog.shared.Log(log: "No shift on")
+            OptHandler.shared.Dubul_no_shift(sel: 0)
+        }
     }
 }
 
