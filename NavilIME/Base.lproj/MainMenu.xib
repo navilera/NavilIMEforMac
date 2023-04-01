@@ -15,6 +15,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="NavilIME" customModuleProvider="target">
             <connections>
+                <outlet property="dubul_no_shift_checkbox" destination="FsM-p3-Aao" id="JbW-6Y-JN7"/>
                 <outlet property="scrollView" destination="7WT-xm-G8f" id="H33-V3-8ZD"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
@@ -63,9 +64,8 @@
                             <rect key="frame" x="4" y="5" width="442" height="57"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FsM-p3-Aao">
-                                    <rect key="frame" x="18" y="18" width="109" height="20"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FsM-p3-Aao">
+                                    <rect key="frame" x="18" y="20" width="404" height="18"/>
                                     <buttonCell key="cell" type="check" title="ㄷㄷㄷ 입력켜기" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="9n4-8Z-Yzr">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -75,6 +75,11 @@
                                     </connections>
                                 </button>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="FsM-p3-Aao" firstAttribute="leading" secondItem="jbE-WO-ihz" secondAttribute="leading" constant="20" symbolic="YES" id="4DY-bQ-bZ2"/>
+                                <constraint firstItem="FsM-p3-Aao" firstAttribute="top" secondItem="jbE-WO-ihz" secondAttribute="top" constant="20" symbolic="YES" id="JGO-kc-FMr"/>
+                                <constraint firstAttribute="trailing" secondItem="FsM-p3-Aao" secondAttribute="trailing" constant="20" symbolic="YES" id="gpr-ol-n1Z"/>
+                            </constraints>
                         </view>
                     </box>
                 </subviews>

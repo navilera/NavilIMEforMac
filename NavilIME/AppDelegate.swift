@@ -13,6 +13,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var scrollView: NSScrollView!
     
+    @IBOutlet weak var dubul_no_shift_checkbox: NSButton!
+    
     var server = IMKServer()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -32,6 +34,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let w = NSApplication.shared.windows.first {
             w.close()
         }
+        
+        // 옵션 윈도우 위젯 연결
+        OptHandler.shared.dubul_no_shift_checkbox = self.dubul_no_shift_checkbox
     }
 
     func applicationWillTerminate(_ notification: Notification) {

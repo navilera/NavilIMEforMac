@@ -222,9 +222,7 @@ open class NavilIMEInputController: IMKInputController {
             if kbd.tag == OptHandler.shared.opt_menu_tag {
                 PrintLog.shared.Log(log: "This is Option: \(kbd.title)")
                 self.hangul.Flush()
-                if let w = NSApplication.shared.windows.first {
-                    w.makeKeyAndOrderFront(sender)
-                }
+                OptHandler.shared.Open_opt_window(sender)
                 return
             }
             HangulMenu.shared.change_selected_keyboard(id: kbd.tag)

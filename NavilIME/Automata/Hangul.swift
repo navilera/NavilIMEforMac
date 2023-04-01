@@ -188,6 +188,15 @@ class Hangul {
         Keyboard390(),
         Keyboard002()
     ]
+    static func Get_keyboard318() -> Keyboard318? {
+        return Hangul.hangul_keyboard[0] as? Keyboard318
+    }
+    static func Get_keyboard318() -> Keyboard390? {
+        return Hangul.hangul_keyboard[1] as? Keyboard390
+    }
+    static func Get_keyboard002() -> Keyboard002? {
+        return Hangul.hangul_keyboard[2] as? Keyboard002
+    }
     
     func Start(type:Int) {
         // 일치하는 키보드가 없으면 318을 사용한다.
