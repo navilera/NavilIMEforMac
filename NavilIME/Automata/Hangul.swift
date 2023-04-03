@@ -186,7 +186,8 @@ class Hangul {
     static let hangul_keyboard:[Keyboard] = [
         Keyboard318(),
         Keyboard390(),
-        Keyboard002()
+        Keyboard002(),
+        KeyboardS3P2(),
     ]
     static func Get_keyboard318() -> Keyboard318? {
         return Hangul.hangul_keyboard[0] as? Keyboard318
