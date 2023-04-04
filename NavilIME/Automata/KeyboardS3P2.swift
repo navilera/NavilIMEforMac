@@ -63,9 +63,9 @@ class KeyboardS3P2 : Keyboard {
             "/f":Jungsung.Wa,
             "/e":Jungsung.Wae,
             "/d":Jungsung.Oe,
-            "br":Jungsung.Weo,      "or":Jungsung.Weo,
-            "bc":Jungsung.We,       "oc":Jungsung.We,
-            "bd":Jungsung.Wi,       "od":Jungsung.Wi
+            "or":Jungsung.Weo,
+            "oc":Jungsung.We,
+            "od":Jungsung.Wi
         ]
         
         // 종성 레이아웃
