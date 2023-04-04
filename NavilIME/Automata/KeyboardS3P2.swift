@@ -37,24 +37,26 @@ class KeyboardS3P2 : Keyboard {
         
         // 중성 레이아웃
         self.jungsung_layout = [
-            "q":Jungsung.Yae,
-            "w":Jungsung.Ya,
-            "e":Jungsung.Ae,
-            "r":Jungsung.Eo,
-            "t":Jungsung.Yeo,
+            "q":Jungsung.Yae,   "Q":Jungsung.Yae,
+            "w":Jungsung.Ya,    "W":Jungsung.Ya,
+            "e":Jungsung.Ae,    "E":Jungsung.Ae,
+            "r":Jungsung.Eo,    "R":Jungsung.Eo,
+            "t":Jungsung.Yeo,   "T":Jungsung.Yeo,
             
-            "a":Jungsung.Yu,
-            "s":Jungsung.Ye,
-            "d":Jungsung.I,
-            "f":Jungsung.A,
-            "g":Jungsung.Eu,    "i":Jungsung.Eu,    "id":Jungsung.Yi,
+            "a":Jungsung.Yu,    "A":Jungsung.Yu,
+            "s":Jungsung.Ye,    "S":Jungsung.Ye,
+            "d":Jungsung.I,     "D":Jungsung.I,
+            "f":Jungsung.A,     "F":Jungsung.A,
+            "g":Jungsung.Eu,    "G":Jungsung.Eu,
+            
+            "i":Jungsung.Eu,    "id":Jungsung.Yi,
             
             "z":Jungsung.YetAraea,
             
-            "x":Jungsung.Yo,
-            "c":Jungsung.E,
-            "v":Jungsung.O,
-            "b":Jungsung.U,
+            "x":Jungsung.Yo,    "X":Jungsung.Yo,
+            "c":Jungsung.E,     "C":Jungsung.E,
+            "v":Jungsung.O,     "V":Jungsung.O,
+            "b":Jungsung.U,     "B":Jungsung.U,
             
             "o":Jungsung.U,
             "/":Jungsung.O,
@@ -115,8 +117,18 @@ class KeyboardS3P2 : Keyboard {
         let chokey:String = comp.chosung + ch
         return self.chosung_layout[chokey] != nil ? true : false
     }
-    
+
     override func jungsung_proc(comp: inout Composition, ch: String) -> Bool {
+        if comp.chosung == ""  {
+            if ch.range(of: "[QWERTASDFGXCVB]", options: .regularExpression, range: nil, locale: nil) != nil {
+                if comp.jongsung != "" {
+                    return false
+                }
+            }
+            else {
+                return false
+            }
+        }
         let jungkey:String = comp.jungsung + ch
         return self.jungsung_layout[jungkey] != nil ? true : false
     }
