@@ -47,7 +47,7 @@ class KeyboardS3P2 : Keyboard {
             "s":Jungsung.Ye,
             "d":Jungsung.I,
             "f":Jungsung.A,
-            "g":Jungsung.Eu,
+            "g":Jungsung.Eu,    "i":Jungsung.Eu,    "id":Jungsung.Yi,
             
             "z":Jungsung.YetAraea,
             
@@ -56,7 +56,6 @@ class KeyboardS3P2 : Keyboard {
             "v":Jungsung.O,
             "b":Jungsung.U,
             
-            //Jungsung.Yi ㅢ는 신세벌P2에서 사용되지 않음
             "o":Jungsung.U,
             "/":Jungsung.O,
             
