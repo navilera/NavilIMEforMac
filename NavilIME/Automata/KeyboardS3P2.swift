@@ -60,9 +60,9 @@ class KeyboardS3P2 : Keyboard {
             "/":Jungsung.O,
             
             // 이중모음
-            "vf":Jungsung.Wa,       "/f":Jungsung.Wa,
-            "ve":Jungsung.Wae,      "/e":Jungsung.Wae,
-            "vd":Jungsung.Oe,       "/d":Jungsung.Oe,
+            "/f":Jungsung.Wa,
+            "/e":Jungsung.Wae,
+            "/d":Jungsung.Oe,
             "br":Jungsung.Weo,      "or":Jungsung.Weo,
             "bc":Jungsung.We,       "oc":Jungsung.We,
             "bd":Jungsung.Wi,       "od":Jungsung.Wi
