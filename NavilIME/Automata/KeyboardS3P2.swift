@@ -114,6 +114,9 @@ class KeyboardS3P2 : Keyboard {
     }
     
     override func chosung_proc(comp: inout Composition, ch: String) -> Bool {
+        if comp.jongsung != "" {
+            return false
+        }
         let chokey:String = comp.chosung + ch
         return self.chosung_layout[chokey] != nil ? true : false
     }
