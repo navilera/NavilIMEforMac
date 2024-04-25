@@ -184,23 +184,33 @@ class Hangul {
      여기에 자판 객체를 등록하면 나빌입력기 전체에서 다 참조해서 사용함
      */
     static let hangul_keyboard:[Keyboard] = [
-        Keyboard318(),
-        Keyboard390(),
-        Keyboard002(),
+        //Keyboard318(),
+        //Keyboard390(),
         KeyboardS3P2(),
+        Keyboard002(),
+        KeyboardQwerty(),
     ]
-    static func Get_keyboard318() -> Keyboard318? {
-        return Hangul.hangul_keyboard[0] as? Keyboard318
-    }
-    static func Get_keyboard318() -> Keyboard390? {
-        return Hangul.hangul_keyboard[1] as? Keyboard390
+    static func Get_keyboard3p2() -> KeyboardS3P2? {
+        return Hangul.hangul_keyboard[0] as? KeyboardS3P2
     }
     static func Get_keyboard002() -> Keyboard002? {
-        return Hangul.hangul_keyboard[2] as? Keyboard002
+        return Hangul.hangul_keyboard[1] as? Keyboard002
+    }
+    static func Get_keyboardSwitch() -> KeyboardQwerty? {
+        return Hangul.hangul_keyboard[2] as? KeyboardQwerty
+    }
+    
+    func switchKrEn() {
+        if self.keyboard?.name == Hangul.hangul_keyboard[0].name {
+            self.keyboard = Hangul.hangul_keyboard[2]
+        } else {
+            self.keyboard = Hangul.hangul_keyboard[0]
+        }
+        self.automata = Automata(kbd: self.keyboard!)
     }
     
     func Start(type:Int) {
-        // 일치하는 키보드가 없으면 318을 사용한다.
+        // 일치하는 키보드가 없으면 제일 위에 걸 사용
         self.keyboard = Hangul.hangul_keyboard[0]
         
         for k in Hangul.hangul_keyboard {

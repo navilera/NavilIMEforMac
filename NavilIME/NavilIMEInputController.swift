@@ -53,6 +53,13 @@ open class NavilIMEInputController: IMKInputController {
         let keycode = event.keyCode
         let flag = event.modifierFlags
         
+        if keycode == 49 && flag.contains(.shift) {
+            self.hangul.Flush()
+            self.update_display(client: client)
+            self.hangul.switchKrEn()
+            return true
+        }
+        
         // 특정 패턴 입력은 한글로 변환하지 않는다.
         Hotfix.shared.add(keycode)
         let is_matched = Hotfix.shared.check()
