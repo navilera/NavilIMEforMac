@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22689"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,7 +16,11 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="NavilIME" customModuleProvider="target">
             <connections>
                 <outlet property="dubul_no_shift_checkbox" destination="FsM-p3-Aao" id="JbW-6Y-JN7"/>
+                <outlet property="nothing_radio" destination="ejH-sn-zqu" id="ygS-wK-Rhn"/>
+                <outlet property="right_cmd" destination="fXG-ca-Nsa" id="t1y-nz-ntE"/>
+                <outlet property="right_opt" destination="aAq-eS-jsh" id="C71-da-gaW"/>
                 <outlet property="scrollView" destination="7WT-xm-G8f" id="H33-V3-8ZD"/>
+                <outlet property="shift_space_radio" destination="o4m-7Z-7tt" id="7ii-Ew-Zm5"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -24,25 +28,25 @@
         <window title="NavilIME" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
+            <rect key="contentRect" x="335" y="390" width="474" height="517"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1470" height="919"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="474" height="517"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7WT-xm-G8f">
-                        <rect key="frame" x="16" y="101" width="448" height="246"/>
+                        <rect key="frame" x="13" y="212" width="448" height="298"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <clipView key="contentView" drawsBackground="NO" id="JVZ-Ji-tNK">
-                            <rect key="frame" x="0.0" y="0.0" width="448" height="246"/>
+                            <rect key="frame" x="0.0" y="0.0" width="448" height="298"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" smartInsertDelete="YES" id="Qen-Ja-R88">
-                                    <rect key="frame" x="0.0" y="0.0" width="448" height="246"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="448" height="298"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="448" height="246"/>
+                                    <size key="minSize" width="448" height="298"/>
                                     <size key="maxSize" width="448" height="10000000"/>
                                     <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 </textView>
@@ -53,12 +57,12 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="ch7-5n-dLA">
-                            <rect key="frame" x="432" y="0.0" width="16" height="246"/>
+                            <rect key="frame" x="432" y="0.0" width="16" height="298"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
                     <box fixedFrame="YES" title="두벌식 옵션" translatesAutoresizingMaskIntoConstraints="NO" id="M3X-8K-Wj8">
-                        <rect key="frame" x="17" y="16" width="450" height="77"/>
+                        <rect key="frame" x="12" y="16" width="450" height="77"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="jbE-WO-ihz">
                             <rect key="frame" x="4" y="5" width="442" height="57"/>
@@ -82,9 +86,71 @@
                             </constraints>
                         </view>
                     </box>
+                    <box fixedFrame="YES" title="한영전환" translatesAutoresizingMaskIntoConstraints="NO" id="35K-Bs-OJo" userLabel="한영전환">
+                        <rect key="frame" x="12" y="97" width="452" height="102"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view key="contentView" id="UV1-p4-dY8">
+                            <rect key="frame" x="4" y="5" width="444" height="82"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <button tag="2" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ejH-sn-zqu">
+                                    <rect key="frame" x="18" y="47" width="120" height="18"/>
+                                    <buttonCell key="cell" type="radio" title="시스템입력기 사용" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="SZR-64-tQC">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="opt_set_hotkey:" target="Voe-Tx-rLC" id="s6i-T7-URa"/>
+                                    </connections>
+                                </button>
+                                <button tag="3" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o4m-7Z-7tt">
+                                    <rect key="frame" x="18" y="25" width="127" height="18"/>
+                                    <buttonCell key="cell" type="radio" title="왼쪽shift + space" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="WQ7-73-CuA">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="opt_set_hotkey:" target="Voe-Tx-rLC" id="Opv-A8-llh"/>
+                                    </connections>
+                                </button>
+                                <button tag="4" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fXG-ca-Nsa">
+                                    <rect key="frame" x="151" y="25" width="120" height="18"/>
+                                    <buttonCell key="cell" type="radio" title="오른쪽command" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="5de-Te-ImA">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="opt_set_hotkey:" target="Voe-Tx-rLC" id="k6X-Wg-y1K"/>
+                                    </connections>
+                                </button>
+                                <button tag="5" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aAq-eS-jsh">
+                                    <rect key="frame" x="277" y="25" width="99" height="18"/>
+                                    <buttonCell key="cell" type="radio" title="오른쪽option" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="FMP-yT-kZU">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="opt_set_hotkey:" target="Voe-Tx-rLC" id="hNv-cD-L1s"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="fXG-ca-Nsa" firstAttribute="leading" secondItem="o4m-7Z-7tt" secondAttribute="trailing" constant="8" symbolic="YES" id="2Lj-dY-9vu"/>
+                                <constraint firstItem="aAq-eS-jsh" firstAttribute="top" secondItem="o4m-7Z-7tt" secondAttribute="top" id="4lo-qW-PGx"/>
+                                <constraint firstItem="fXG-ca-Nsa" firstAttribute="top" secondItem="UV1-p4-dY8" secondAttribute="top" constant="40" id="6zx-w5-0Zy"/>
+                                <constraint firstItem="o4m-7Z-7tt" firstAttribute="top" secondItem="ejH-sn-zqu" secondAttribute="bottom" constant="6" symbolic="YES" id="BnP-xo-hY5"/>
+                                <constraint firstAttribute="trailing" secondItem="aAq-eS-jsh" secondAttribute="trailing" constant="68" id="QPL-xZ-Tch"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ejH-sn-zqu" secondAttribute="trailing" constant="20" symbolic="YES" id="R3m-BX-uXV"/>
+                                <constraint firstItem="ejH-sn-zqu" firstAttribute="leading" secondItem="UV1-p4-dY8" secondAttribute="leading" constant="20" symbolic="YES" id="cOS-I8-8jJ"/>
+                                <constraint firstItem="o4m-7Z-7tt" firstAttribute="leading" secondItem="UV1-p4-dY8" secondAttribute="leading" constant="20" symbolic="YES" id="iIv-tJ-MxS"/>
+                                <constraint firstItem="aAq-eS-jsh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fXG-ca-Nsa" secondAttribute="trailing" constant="8" symbolic="YES" id="r0t-BG-meD"/>
+                                <constraint firstItem="fXG-ca-Nsa" firstAttribute="top" secondItem="o4m-7Z-7tt" secondAttribute="top" id="rGW-IB-gXE"/>
+                            </constraints>
+                        </view>
+                    </box>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="200" y="400"/>
+            <point key="canvasLocation" x="203" y="478.5"/>
         </window>
     </objects>
 </document>

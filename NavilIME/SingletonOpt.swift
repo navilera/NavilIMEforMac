@@ -4,6 +4,8 @@
 //
 //  Created by Manwoo Yi on 3/31/23.
 //
+//  UI와 연결된 객체는 AppDelegate.swift 에 있다.
+//
 
 import Foundation
 import Cocoa
@@ -13,7 +15,11 @@ class OptHandler {
 
     let opt_menu_tag = 0xffff
     
+    // 두벌식 옵션
     var dubul_no_shift_checkbox: NSButton?
+    
+    // 한영전환 옵션
+    var hotkeys: [NSButton]?
     
     private init() { }
     
