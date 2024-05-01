@@ -35,10 +35,9 @@ open class NavilIMEInputController: IMKInputController {
     
     override open func handle(_ event: NSEvent!, client sender: Any!) -> Bool {
         if OptHandler.shared.Is_han_eng_changed(keycode: event.keyCode, modi: event.modifierFlags) {
-            self.hangul.Flush()
-            self.update_display(client: sender)
             self.hangul.ToggleSuspend()
-            return false
+            self.commitComposition(sender)
+            return true
         }
         
         switch event.type {
