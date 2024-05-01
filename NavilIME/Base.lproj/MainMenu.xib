@@ -93,7 +93,7 @@
                             <rect key="frame" x="4" y="5" width="444" height="82"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <button tag="2" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ejH-sn-zqu">
+                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ejH-sn-zqu">
                                     <rect key="frame" x="18" y="47" width="120" height="18"/>
                                     <buttonCell key="cell" type="radio" title="시스템입력기 사용" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="SZR-64-tQC">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -103,7 +103,7 @@
                                         <action selector="opt_set_hotkey:" target="Voe-Tx-rLC" id="s6i-T7-URa"/>
                                     </connections>
                                 </button>
-                                <button tag="3" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o4m-7Z-7tt">
+                                <button tag="1" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o4m-7Z-7tt">
                                     <rect key="frame" x="18" y="25" width="127" height="18"/>
                                     <buttonCell key="cell" type="radio" title="왼쪽shift + space" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="WQ7-73-CuA">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -113,7 +113,7 @@
                                         <action selector="opt_set_hotkey:" target="Voe-Tx-rLC" id="Opv-A8-llh"/>
                                     </connections>
                                 </button>
-                                <button tag="4" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fXG-ca-Nsa">
+                                <button tag="2" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fXG-ca-Nsa">
                                     <rect key="frame" x="151" y="25" width="120" height="18"/>
                                     <buttonCell key="cell" type="radio" title="오른쪽command" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="5de-Te-ImA">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -123,7 +123,7 @@
                                         <action selector="opt_set_hotkey:" target="Voe-Tx-rLC" id="k6X-Wg-y1K"/>
                                     </connections>
                                 </button>
-                                <button tag="5" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aAq-eS-jsh">
+                                <button tag="3" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aAq-eS-jsh">
                                     <rect key="frame" x="277" y="25" width="99" height="18"/>
                                     <buttonCell key="cell" type="radio" title="오른쪽option" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="FMP-yT-kZU">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>

@@ -179,6 +179,15 @@ class Hangul {
         self.automata = nil
     }
     
+    func ToggleSuspend() {
+        HangulMenu.shared.self_eng_mode = !HangulMenu.shared.self_eng_mode
+        if HangulMenu.shared.self_eng_mode {
+            PrintLog.shared.Log(log: "영어")
+        } else {
+            PrintLog.shared.Log(log: "한글")
+        }
+    }
+    
     /*
      입력기 프론트엔드에 한글 오토마타 엔진이 지원하는 자판 목록과 인스턴스를 전달함
      여기에 자판 객체를 등록하면 나빌입력기 전체에서 다 참조해서 사용함
@@ -212,6 +221,12 @@ class Hangul {
     }
 
     func Process(ascii:String) -> Bool {
+        // 자체 영어 입력 모드 - 한글 오토마타를 잠시 중지하면 그게 영어 입력이다.
+        if HangulMenu.shared.self_eng_mode {
+            // 잠시 중지면 오토마타를 안돌림
+            return false
+        }
+        
         if self.keyboard?.is_hangul(ch: ascii) == false {
             return false
         }

@@ -33,8 +33,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSLog("tried connection")
         
         // 디버깅 할 때는 로그를 봐야 하므로 아래 주석을 순서대로 사용한다.
-        PrintLog.shared.scrollView = self.scrollView      // Debuging mode ON
-        //PrintLog.shared.scrollView = nil                    // Debuging mode OFF
+        //PrintLog.shared.scrollView = self.scrollView      // Debuging mode ON
+        PrintLog.shared.scrollView = nil                    // Debuging mode OFF
         
         if PrintLog.shared.scrollView == nil {
             self.scrollView.isHidden = true
@@ -49,10 +49,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         OptHandler.shared.dubul_no_shift_checkbox = self.dubul_no_shift_checkbox
         
         // 옵션 윈도우 - 한영전환 옵션 연결
-        OptHandler.shared.hotkeys?.append(self.nothing_radio)
-        OptHandler.shared.hotkeys?.append(self.shift_space_radio)
-        OptHandler.shared.hotkeys?.append(self.right_cmd)
-        OptHandler.shared.hotkeys?.append(self.right_opt)
+        OptHandler.shared.hotkeys.append(self.nothing_radio)
+        OptHandler.shared.hotkeys.append(self.shift_space_radio)
+        OptHandler.shared.hotkeys.append(self.right_cmd)
+        OptHandler.shared.hotkeys.append(self.right_opt)
     }
 
     func applicationWillTerminate(_ notification: Notification) {
@@ -73,6 +73,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func opt_set_hotkey(_ sender: NSButton) {
         let radio_tag = sender.tag
         PrintLog.shared.Log(log: "Han Eng radio Tag = \(radio_tag) ")
+        OptHandler.shared.HanEng_hotkey(sel: radio_tag)
     }
 }
 

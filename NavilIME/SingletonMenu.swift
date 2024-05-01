@@ -14,6 +14,8 @@ class HangulMenu {
     var selected_keyboard:Int
     var menu:NSMenu
     
+    var self_eng_mode:Bool = false
+    
     let user_default_key = "keyboard"
     
     func change_selected_keyboard(id:Int) {
