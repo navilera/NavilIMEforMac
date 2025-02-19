@@ -420,6 +420,9 @@ class Keyboard {
     var jongsung_layout:[String:Jongsung]
     var etc_layout:[String:String]
     
+    var prev_input_time:TimeInterval
+    var input_delta:TimeInterval
+    
     init() {
         self.name = ""
         self.id = 0
@@ -427,6 +430,15 @@ class Keyboard {
         self.jungsung_layout = [:]
         self.jongsung_layout = [:]
         self.etc_layout = [:]
+        
+        self.prev_input_time = Date().timeIntervalSince1970
+        self.input_delta = 0
+    }
+    
+    func update_key_input_time_delta() {
+        let curr_time = Date().timeIntervalSince1970
+        self.input_delta = (curr_time - prev_input_time) * 1000
+        self.prev_input_time = curr_time
     }
     
     func chosung_proc(comp:inout Composition, ch:String) -> Bool {

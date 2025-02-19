@@ -145,7 +145,7 @@ open class NavilIMEInputController: IMKInputController {
         
         commited += additional
         
-        let build_count = 283
+        let build_count = 302
         if commited.count != 0 {
             disp.insertText(commited, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
             

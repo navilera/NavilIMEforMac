@@ -115,6 +115,23 @@ class Keyboard318 : Keyboard {
     }
     
     override func chosung_proc(comp: inout Composition, ch: String) -> Bool {
+        // 직전 입력과 간격이 50ms 이내라면 동시 입력으로 간주한다.
+        if self.input_delta < 50 {
+            // 종성이 있고
+            if comp.jongsung != "" {
+                // 종성의 마지막 글자 (종성은 겹받침이 가능하므로 최대 두 글자)
+                var jong_arr = Array(comp.jongsung)
+                let jong_last = jong_arr.removeLast()
+                // 종성으로 입력된 마지막 글자가 중성 테이블에 있으면 다음 글자의 중성으로 인식함
+                if self.jungsung_layout[String(jong_last)] != nil {
+                    // 종성 마지막 글자를 없애고 조합 완료를 표시하고 더이상 검색하지 않음
+                    comp.jongsung = String(jong_arr)
+                    comp.done = true
+                    return false
+                }
+            }
+        }
+        
         let chokey:String = comp.chosung + ch
         return self.chosung_layout[chokey] != nil ? true : false
     }

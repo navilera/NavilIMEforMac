@@ -91,6 +91,7 @@ struct Automata {
 
     mutating func run() -> Composition{
         var comp:Composition = Composition()
+        
         for ch in self.current {
             // 입력이 초성인가?
             if self.keyboard.chosung_proc(comp: &comp, ch: ch) {
@@ -227,9 +228,14 @@ class Hangul {
             return false
         }
         
+        // 한글인지 확인
         if self.keyboard?.is_hangul(ch: ascii) == false {
             return false
         }
+        // 키보드 입력 시간 델타 업데이트
+        self.keyboard?.update_key_input_time_delta()
+        PrintLog.shared.Log(log: "Key time delta \(String(describing: self.keyboard?.input_delta))")
+        
         // 키보드가 눌릴 때 마다 한 글자씩 오토마타로 넣는다.
         self.automata!.current.append(ascii)
         // 오토마타 돌린다.
