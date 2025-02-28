@@ -13,7 +13,6 @@
 		CF39BCA428C42D7300CB35AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF39BCA328C42D7300CB35AE /* Assets.xcassets */; };
 		CF39BCA728C42D7300CB35AE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF39BCA528C42D7300CB35AE /* MainMenu.xib */; };
 		CF39BCAF28C49BDA00CB35AE /* NavilIMEInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF39BCAE28C49BDA00CB35AE /* NavilIMEInputController.swift */; };
-		CF39BCB228C4A47200CB35AE /* navilime.tiff in Resources */ = {isa = PBXBuildFile; fileRef = CF39BCB128C4A47200CB35AE /* navilime.tiff */; };
 		CF40CD3028EFF6CC000CCB7B /* Keyboard002.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF40CD2F28EFF6CB000CCB7B /* Keyboard002.swift */; };
 		CF482862291A21DD0020EC2B /* SingletonHotfix.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF482861291A21DD0020EC2B /* SingletonHotfix.swift */; };
 		CF6561F928D1AE240085AC8D /* Hangul.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6561F828D1AE240085AC8D /* Hangul.swift */; };
@@ -22,6 +21,7 @@
 		CF6561FF28D1AE6F0085AC8D /* Testcases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6561FE28D1AE6F0085AC8D /* Testcases.swift */; };
 		CF714A5B28E6C273000CBDEE /* SingletonMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF714A5A28E6C273000CBDEE /* SingletonMenu.swift */; };
 		CF714A5D28E6C62C000CBDEE /* Keyboard390.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF714A5C28E6C62C000CBDEE /* Keyboard390.swift */; };
+		CF8F931D2D718F5300955352 /* navilime.png in Resources */ = {isa = PBXBuildFile; fileRef = CF8F931C2D718F5300955352 /* navilime.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +34,6 @@
 		CF39BCA828C42D7300CB35AE /* NavilIME.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NavilIME.entitlements; sourceTree = "<group>"; };
 		CF39BCAE28C49BDA00CB35AE /* NavilIMEInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavilIMEInputController.swift; sourceTree = "<group>"; };
 		CF39BCB028C49D3800CB35AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		CF39BCB128C4A47200CB35AE /* navilime.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = navilime.tiff; sourceTree = "<group>"; };
 		CF40CD2F28EFF6CB000CCB7B /* Keyboard002.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboard002.swift; sourceTree = "<group>"; };
 		CF482861291A21DD0020EC2B /* SingletonHotfix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingletonHotfix.swift; sourceTree = "<group>"; };
 		CF6561F828D1AE240085AC8D /* Hangul.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hangul.swift; sourceTree = "<group>"; };
@@ -43,6 +42,7 @@
 		CF6561FE28D1AE6F0085AC8D /* Testcases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Testcases.swift; sourceTree = "<group>"; };
 		CF714A5A28E6C273000CBDEE /* SingletonMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingletonMenu.swift; sourceTree = "<group>"; };
 		CF714A5C28E6C62C000CBDEE /* Keyboard390.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboard390.swift; sourceTree = "<group>"; };
+		CF8F931C2D718F5300955352 /* navilime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navilime.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +86,7 @@
 				CF39BCA328C42D7300CB35AE /* Assets.xcassets */,
 				CF39BCA528C42D7300CB35AE /* MainMenu.xib */,
 				CF39BCA828C42D7300CB35AE /* NavilIME.entitlements */,
-				CF39BCB128C4A47200CB35AE /* navilime.tiff */,
+				CF8F931C2D718F5300955352 /* navilime.png */,
 			);
 			path = NavilIME;
 			sourceTree = "<group>";
@@ -162,7 +162,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF39BCB228C4A47200CB35AE /* navilime.tiff in Resources */,
+				CF8F931D2D718F5300955352 /* navilime.png in Resources */,
 				CF39BCA428C42D7300CB35AE /* Assets.xcassets in Resources */,
 				CF39BCA728C42D7300CB35AE /* MainMenu.xib in Resources */,
 			);
@@ -330,7 +330,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 365;
+				CURRENT_PROJECT_VERSION = 370;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 232X8633XC;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -362,7 +362,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 365;
+				CURRENT_PROJECT_VERSION = 370;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 232X8633XC;
 				ENABLE_HARDENED_RUNTIME = YES;
