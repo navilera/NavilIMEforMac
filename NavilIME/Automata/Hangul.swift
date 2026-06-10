@@ -278,6 +278,21 @@ class Hangul {
         self.automata!.current = []
     }
 
+    // 조합 중인 낱자 입력 개수
+    func InputCount() -> Int {
+        return self.automata?.current.count ?? 0
+    }
+
+    // 조합 중인 입력을 커밋하지 않고 조용히 버린다.
+    // (직접 삽입 모드에서 앱이 조합 글자를 이미 가져가 버린 경우 등)
+    func Discard() {
+        self.automata?.current = []
+        self.committed = []
+        self.preediting = []
+        self.debug_commit = []
+        self.debug_preedit = []
+    }
+
     func GetPreedit() -> [unichar] {
         let ret:[unichar] = self.preediting
         self.preediting = []
