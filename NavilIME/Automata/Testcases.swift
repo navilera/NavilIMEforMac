@@ -403,6 +403,52 @@ class Test390 : TestCase {
         self.test_debug(hangul: hangul, t: "input", ch: "v", expect_commit: ["uvX"], expect_preedit: ["XvX"])
         self.test_debug(hangul: hangul, t: "input", ch: "v", expect_commit: ["XvX"], expect_preedit: ["XvX"])
     }
+
+    // 겹받침을 전용 키뿐 아니라 낱자를 차례로 눌러서도 조합할 수 있어야 한다.
+    // (ㄺ/ㄻ/ㅀ 조합 경로 누락, ㄴ+ㅎ이 ㄵ으로 잘못 매핑됐던 버그 회귀 방지)
+    func run_jongsung_combo() {
+        let hangul = Hangul()
+        hangul.Start(type: 390)
+
+        print("========390 겹받침 조합===========")
+
+        // 싫어 : ㅅㅣ + (ㄹ받침 w + ㅎ받침 1 = ㅀ) + ㅇㅓ
+        self.test_debug(hangul: hangul, t: "input", ch: "n", expect_commit: [], expect_preedit: ["nXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "d", expect_commit: [], expect_preedit: ["ndX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "w", expect_commit: [], expect_preedit: ["ndw"])
+        self.test_debug(hangul: hangul, t: "input", ch: "1", expect_commit: [], expect_preedit: ["ndw1"])
+        self.test_debug(hangul: hangul, t: "input", ch: "j", expect_commit: ["ndw1"], expect_preedit: ["jXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "t", expect_commit: [], expect_preedit: ["jtX"])
+        self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["jtX"], expect_preedit: [])
+
+        // 흙 : ㅎㅡ + (ㄹ받침 w + ㄱ받침 x = ㄺ)
+        self.test_debug(hangul: hangul, t: "input", ch: "m", expect_commit: [], expect_preedit: ["mXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "g", expect_commit: [], expect_preedit: ["mgX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "w", expect_commit: [], expect_preedit: ["mgw"])
+        self.test_debug(hangul: hangul, t: "input", ch: "x", expect_commit: [], expect_preedit: ["mgwx"])
+        self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["mgwx"], expect_preedit: [])
+
+        // 삶 : ㅅㅏ + (ㄹ받침 w + ㅁ받침 z = ㄻ)
+        self.test_debug(hangul: hangul, t: "input", ch: "n", expect_commit: [], expect_preedit: ["nXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "f", expect_commit: [], expect_preedit: ["nfX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "w", expect_commit: [], expect_preedit: ["nfw"])
+        self.test_debug(hangul: hangul, t: "input", ch: "z", expect_commit: [], expect_preedit: ["nfwz"])
+        self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["nfwz"], expect_preedit: [])
+
+        // 많 : ㅁㅏ + (ㄴ받침 s + ㅎ받침 1 = ㄶ)
+        self.test_debug(hangul: hangul, t: "input", ch: "i", expect_commit: [], expect_preedit: ["iXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "f", expect_commit: [], expect_preedit: ["ifX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "s", expect_commit: [], expect_preedit: ["ifs"])
+        self.test_debug(hangul: hangul, t: "input", ch: "1", expect_commit: [], expect_preedit: ["ifs1"])
+        self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["ifs1"], expect_preedit: [])
+
+        // 앉 : ㅇㅏ + (ㄴ받침 s + ㅈ받침 ! = ㄵ)
+        self.test_debug(hangul: hangul, t: "input", ch: "j", expect_commit: [], expect_preedit: ["jXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "f", expect_commit: [], expect_preedit: ["jfX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "s", expect_commit: [], expect_preedit: ["jfs"])
+        self.test_debug(hangul: hangul, t: "input", ch: "!", expect_commit: [], expect_preedit: ["jfs!"])
+        self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["jfs!"], expect_preedit: [])
+    }
 }
 
 class Test002 : TestCase {
