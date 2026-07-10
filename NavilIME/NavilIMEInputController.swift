@@ -24,16 +24,22 @@ open class NavilIMEInputController: IMKInputController {
     
     override open func deactivateServer(_ sender: Any!) {
         super.deactivateServer(sender)
-        
+
         PrintLog.shared.Log(log: "Server deactivating")
-        
+
+        guard self.hangul != nil else { return }
         self.hangul.Flush()
         self.update_display(client: sender)
-        
+
         self.hangul.Stop()
+        // Stop()은 automata만 nil로 만들고 hangul 객체는 남아서, 이 뒤에 또
+        // commitComposition이 오면 Flush()의 강제 언래핑에서 크래시난다.
+        // hangul 자체를 nil로 만들어 아래 가드들이 실제로 막게 한다.
+        self.hangul = nil
     }
-    
+
     override open func handle(_ event: NSEvent!, client sender: Any!) -> Bool {
+        guard self.hangul != nil else { return false }
         if OptHandler.shared.Is_han_eng_changed(keycode: event.keyCode, modi: event.modifierFlags) {
             self.hangul.ToggleSuspend()
             self.commitComposition(sender)
@@ -172,6 +178,9 @@ open class NavilIMEInputController: IMKInputController {
      */
     override open func commitComposition(_ sender: Any!) {
         PrintLog.shared.Log(log: "Commit Composition")
+        // IMK가 activateServer(=hangul 초기화) 전에 commitComposition을 호출할 때가 있어
+        // self.hangul 이 nil이면 강제 언래핑으로 크래시난다 → 가드로 방지.
+        guard self.hangul != nil else { return }
         self.hangul.Flush()
         self.update_display(client: sender)
     }
@@ -227,7 +236,7 @@ open class NavilIMEInputController: IMKInputController {
             PrintLog.shared.Log(log: "Selected Keyboard: \(kbd.title)")
             if kbd.tag == OptHandler.shared.opt_menu_tag {
                 PrintLog.shared.Log(log: "This is Option: \(kbd.title)")
-                self.hangul.Flush()
+                self.hangul?.Flush()
                 OptHandler.shared.Open_opt_window(sender)
                 return
             }
@@ -238,9 +247,9 @@ open class NavilIMEInputController: IMKInputController {
             kbd.state = NSControl.StateValue.on
             
             // 바꾼 한글 자판을 즉시 적용
-            self.hangul.Flush()
-            self.hangul.Stop()
-            self.hangul.Start(type: HangulMenu.shared.selected_keyboard)
+            self.hangul?.Flush()
+            self.hangul?.Stop()
+            self.hangul?.Start(type: HangulMenu.shared.selected_keyboard)
         } else {
             PrintLog.shared.Log(log: "Not NSMenuItem????")
         }
